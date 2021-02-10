@@ -8,4 +8,13 @@
     <string name="uc_connect_with_facebook">CONNECT WITH FACEBOOK</string>
     <string name="uc_sign_up">SIGN UP</string>
     <string name="this_email_and_password_don_t_match">this email and password don\'t match</string>
+    <string name="uc_name">NAME</string>
+    <string name="you_forgot_to_put_your_name">you forgot to put your name!</string>
+    <string name="oops_this_email_is_not_valid">oops! this email is not valid</string>
+    <string name="min_6_characters_long">MIN. 6 CHARACTERS LONG</string>
+    <string name="the_password_must_be_6_character_long">the password must be 6 character long</string>
+    <string name="uc_confirm_password">CONFIRM PASSWORD</string>
+    <string name="password_don_t_match">password don\'t match</string>
+    <string name="uc_gender">GENDER</string>
+    <string name="you_forgot_to_select_your_gender">You forgot to select your gender</string>
 </resources>
