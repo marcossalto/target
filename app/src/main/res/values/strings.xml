@@ -17,4 +17,7 @@
     <string name="password_don_t_match">password don\'t match</string>
     <string name="uc_gender">GENDER</string>
     <string name="you_forgot_to_select_your_gender">You forgot to select your gender</string>
+    <string name="generic_error">There was an unexpected error</string>
+    <string name="error">ERROR</string>
+    <string name="ok">OK</string>
 </resources>
