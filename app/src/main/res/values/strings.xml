@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Target MVD</string>
+    <string name="target_mvd">TARGET MVD</string>
+    <string name="uc_email">EMAIL</string>
+    <string name="uc_password">PASSWORD</string>
+    <string name="uc_sign_in">SIGN IN</string>
+    <string name="forgot_your_password">Forgot your password?</string>
+    <string name="uc_connect_with_facebook">CONNECT WITH FACEBOOK</string>
+    <string name="uc_sign_up">SIGN UP</string>
+    <string name="this_email_and_password_don_t_match">this email and password don\'t match</string>
 </resources>
