@@ -1,4 +1,4 @@
-package com.marcossalto.targetmvd.network.util
+package com.marcossalto.targetmvd.util
 
 import android.content.Context
 import android.widget.Toast

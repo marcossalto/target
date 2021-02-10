@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.marcossalto.targetmvd.R
 import com.marcossalto.targetmvd.network.providers.ServiceProvider
 import com.marcossalto.targetmvd.network.services.ApiService
-import com.marcossalto.targetmvd.network.util.toast
+import com.marcossalto.targetmvd.util.toast
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
