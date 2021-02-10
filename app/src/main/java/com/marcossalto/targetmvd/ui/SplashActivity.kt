@@ -1,22 +1,24 @@
-package com.marcossalto.targetmvd
+package com.marcossalto.targetmvd.ui
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.marcossalto.targetmvd.R
 
-class SignInActivity : AppCompatActivity() {
+
+class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_in)
-        goToSignUp()
+        setContentView(R.layout.activity_splash)
+        goToSignIn()
     }
 
-    private fun goToSignUp() {
+    private fun goToSignIn() {
         val splash = object : Thread(){
             override fun run(){
                 try{
-                    sleep(2500)
-                    val intent = Intent(this@SignInActivity, SignUpActivity::class.java)
+                    sleep(1500)
+                    val intent = Intent(this@SplashActivity, SignInActivity::class.java)
                     finish()
                     startActivity(intent)
                 }catch (e: Exception){}
