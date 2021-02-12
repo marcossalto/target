@@ -1,7 +1,9 @@
 package com.marcossalto.targetmvd.network.providers
 
 import com.marcossalto.targetmvd.BuildConfig
+import com.marcossalto.targetmvd.network.services.AuthenticationInterceptor
 import com.marcossalto.targetmvd.network.services.HeadersInterceptor
+import com.marcossalto.targetmvd.network.services.ResponseInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -14,6 +16,8 @@ object ServiceProvider {
     private fun build(): Retrofit {
         val client = OkHttpClient.Builder()
             .addInterceptor(HeadersInterceptor())
+            .addInterceptor(AuthenticationInterceptor())
+            .addInterceptor(ResponseInterceptor())
             .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC))
             .build()
 

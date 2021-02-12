@@ -1,0 +1,10 @@
+package com.marcossalto.targetmvd.network.managers
+
+import com.marcossalto.targetmvd.network.models.*
+import com.marcossalto.targetmvd.util.extensions.Data
+
+interface IUserManager {
+    suspend fun signUp(user: UserSignUp): Result<Data<UserSerializer>>
+    suspend fun signIn(user: UserSignIn): Result<Data<UserSignInResponseSerializer>>
+    suspend fun signOut(): Result<Data<Void>>
+}
