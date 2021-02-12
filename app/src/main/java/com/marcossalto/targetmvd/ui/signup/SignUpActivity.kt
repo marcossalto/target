@@ -1,4 +1,4 @@
-package com.marcossalto.targetmvd.ui
+package com.marcossalto.targetmvd.ui.signup
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

@@ -1,9 +1,10 @@
-package com.marcossalto.targetmvd.ui
+package com.marcossalto.targetmvd.ui.signin
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.marcossalto.targetmvd.R
+import com.marcossalto.targetmvd.ui.signup.SignUpActivity
 
 class SignInActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
