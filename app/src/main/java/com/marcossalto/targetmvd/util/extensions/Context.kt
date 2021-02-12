@@ -1,4 +1,4 @@
-package com.marcossalto.targetmvd.util
+package com.marcossalto.targetmvd.util.extensions
 
 import android.content.Context
 import android.widget.Toast
