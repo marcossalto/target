@@ -18,7 +18,7 @@ object ServiceProvider {
             .addInterceptor(HeadersInterceptor())
             .addInterceptor(AuthenticationInterceptor())
             .addInterceptor(ResponseInterceptor())
-            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC))
+            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .build()
 
         return Retrofit.Builder()

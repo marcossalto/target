@@ -1,25 +1,30 @@
 package com.marcossalto.targetmvd.ui.splash
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.marcossalto.targetmvd.R
-import com.marcossalto.targetmvd.network.providers.ServiceProvider
-import com.marcossalto.targetmvd.network.services.ApiService
-import com.marcossalto.targetmvd.util.extensions.toast
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import com.marcossalto.targetmvd.ui.signin.SignInActivity
 
 
 class SplashActivity : AppCompatActivity() {
-    private var service = ServiceProvider.create(ApiService::class.java)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+        goToSignIn()
+    }
 
-        GlobalScope.launch(Dispatchers.Main) {
-            val server = service.checkServerStatus()
-            toast(server.online.toString())
+    private fun goToSignIn() {
+        val splash = object : Thread(){
+            override fun run(){
+                try{
+                    sleep(2500)
+                    val intent = Intent(this@SplashActivity, SignInActivity::class.java)
+                    finish()
+                    startActivity(intent)
+                }catch (e: Exception){}
+            }
         }
+        splash.start()
     }
 }

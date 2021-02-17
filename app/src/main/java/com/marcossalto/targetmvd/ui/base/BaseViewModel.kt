@@ -15,7 +15,7 @@ import com.marcossalto.targetmvd.util.ViewModelListener
 open class BaseViewModel(var listener: ViewModelListener?) : ViewModel(), LifecycleObserver {
     var error: String? = null
 
-    var networkState: NetworkState = NetworkState.idle
+    var networkState: NetworkState = NetworkState.IDLE
         set(value) {
             field = value
             listener?.updateNetworkState()

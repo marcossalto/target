@@ -6,7 +6,7 @@ interface ViewModelListener {
 }
 
 enum class NetworkState {
-    loading,
-    idle,
-    error
+    LOADING,
+    IDLE,
+    ERROR
 }
