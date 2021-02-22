@@ -19,4 +19,7 @@ interface ApiService {
 
     @DELETE("users/sign_out")
     fun signOut(): Call<Void>
+
+    @POST("users/facebook")
+    fun login(@Body accessTokenSerializer: AccessTokenSerializer): Call<UserSignInResponseSerializer>
 }

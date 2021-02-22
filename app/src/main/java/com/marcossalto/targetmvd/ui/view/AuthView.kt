@@ -4,5 +4,5 @@ import com.marcossalto.targetmvd.ui.base.BaseView
 
 interface AuthView : BaseView {
 
-    fun showProfile()
+    fun showFeed()
 }

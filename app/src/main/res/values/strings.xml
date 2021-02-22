@@ -31,4 +31,6 @@
     <string name="confirm_password_cannot_be_empty">confirm password cannot be empty</string>
     <string name="gender_cannot_be_empty">gender cannot be empty</string>
     <string name="select_your_gender">SELECT YOUR GENDER</string>
+    <string name="facebook_app_id">876877256214170</string>
+    <string name="fb_login_protocol_scheme">fb876877256214170</string>
 </resources>

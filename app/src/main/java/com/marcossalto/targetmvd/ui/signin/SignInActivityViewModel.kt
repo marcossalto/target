@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.marcossalto.targetmvd.network.managers.IUserManager
 import com.marcossalto.targetmvd.network.managers.SessionManager
 import com.marcossalto.targetmvd.network.managers.UserManager
+import com.marcossalto.targetmvd.network.models.AccessTokenSerializer
 import com.marcossalto.targetmvd.network.models.UserSignIn
 import com.marcossalto.targetmvd.ui.base.BaseViewModel
 import com.marcossalto.targetmvd.util.NetworkState
@@ -28,6 +29,23 @@ open class SignInActivityViewModel(listener: ViewModelListener?) : BaseViewModel
         networkState = NetworkState.LOADING
         viewModelScope.launch {
             val result = manager.signIn(user = user)
+            if (result.isSuccess) {
+                result.getOrNull()?.value?.data?.let { user ->
+                    SessionManager.signIn(user)
+                }
+
+                networkState = NetworkState.IDLE
+                state = SignInState.SUCCESS
+            } else {
+                handleError(result.exceptionOrNull())
+            }
+        }
+    }
+
+    fun login(accessToken: AccessTokenSerializer) {
+        networkState = NetworkState.LOADING
+        viewModelScope.launch {
+            val result = manager.login(accessToken = accessToken)
             if (result.isSuccess) {
                 result.getOrNull()?.value?.data?.let { user ->
                     SessionManager.signIn(user)

@@ -23,6 +23,9 @@ object UserManager : IUserManager {
     override suspend fun signOut(): Result<Data<Void>> =
         ActionCallback.call(service.signOut())
 
+    override suspend fun login(accessToken: AccessTokenSerializer): Result<Data<UserSignInResponseSerializer>> =
+        ActionCallback.call(service.login(accessToken))
+
     @RestrictTo(RestrictTo.Scope.TESTS)
     fun reloadService(url: String) {
         service = ServiceProvider.create(ApiService::class.java, url)

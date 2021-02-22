@@ -3,7 +3,6 @@ package com.marcossalto.targetmvd.ui.signup
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
-import androidx.core.view.get
 import androidx.lifecycle.ViewModelProviders
 import com.marcossalto.targetmvd.R
 import com.marcossalto.targetmvd.databinding.ActivitySignUpBinding
@@ -12,7 +11,6 @@ import com.marcossalto.targetmvd.metrics.PageEvents
 import com.marcossalto.targetmvd.metrics.VISIT_SIGN_UP
 import com.marcossalto.targetmvd.network.models.UserSignUp
 import com.marcossalto.targetmvd.ui.base.BaseActivity
-import com.marcossalto.targetmvd.ui.profile.ProfileActivity
 import com.marcossalto.targetmvd.ui.signin.SignInActivity
 import com.marcossalto.targetmvd.ui.view.AuthView
 import com.marcossalto.targetmvd.util.NetworkState
@@ -61,8 +59,8 @@ class SignUpActivity : BaseActivity(), AuthView {
         lifecycle.addObserver(viewModel)
     }
 
-    override fun showProfile() {
-        startActivityClearTask(ProfileActivity())
+    override fun showFeed() {
+        toast("Navigate to FeedActivity")
     }
 
     private fun signUp() {
@@ -74,21 +72,21 @@ class SignUpActivity : BaseActivity(), AuthView {
                         text = getString(R.string.you_forgot_to_put_your_name)
                         visibility = android.view.View.VISIBLE
                     }
-                    nameEditText.background = resources.getDrawable(R.drawable.edit_text_red)
+                    nameEditText.background = resources.getDrawable(R.drawable.edit_text_red, null)
                 }
                 !emailEditText.value().isEmail() -> {
                     with(emailMessageTextView) {
                         text = getString(R.string.oops_this_email_is_not_valid)
                         visibility = android.view.View.VISIBLE
                     }
-                    emailEditText.background = resources.getDrawable(R.drawable.edit_text_red)
+                    emailEditText.background = resources.getDrawable(R.drawable.edit_text_red, null)
                 }
                 !passwordEditText.validate("[a-zA-Z0-9]{6,}") -> {
                     with(passwordMessageTextView) {
                         text = getString(R.string.the_password_must_be_6_character_long)
                         visibility = android.view.View.VISIBLE
                     }
-                    passwordEditText.background = resources.getDrawable(R.drawable.edit_text_red)
+                    passwordEditText.background = resources.getDrawable(R.drawable.edit_text_red, null)
                 }
                 confirmPasswordEditText.value() != passwordEditText.value() -> {
                     with(confirmPasswordMessage) {
@@ -97,7 +95,7 @@ class SignUpActivity : BaseActivity(), AuthView {
                         visibility = android.view.View.VISIBLE
                     }
                     confirmPasswordEditText.background =
-                        resources.getDrawable(R.drawable.edit_text_red)
+                        resources.getDrawable(R.drawable.edit_text_red, null)
                 }
                 genderSpinner.selectedItemId.toInt() == 0 -> {
                     with(genderMessageTextView) {
@@ -129,7 +127,7 @@ class SignUpActivity : BaseActivity(), AuthView {
         override fun updateState() {
             when (viewModel.state) {
                 SignUpState.FAILURE -> showError(viewModel.error)
-                SignUpState.SUCCESS -> showProfile()
+                SignUpState.SUCCESS -> showFeed()
                 else -> {
                 }
             }
@@ -172,10 +170,13 @@ class SignUpActivity : BaseActivity(), AuthView {
                 text = ""
                 visibility = android.view.View.GONE
             }
-            nameEditText.background = resources.getDrawable(R.drawable.edit_text_normal)
-            emailEditText.background = resources.getDrawable(R.drawable.edit_text_normal)
-            passwordEditText.background = resources.getDrawable(R.drawable.edit_text_normal)
-            confirmPasswordEditText.background = resources.getDrawable(R.drawable.edit_text_normal)
+            resources.getDrawable(R.drawable.edit_text_normal, null)
+                .also {
+                    nameEditText.background = it
+                    emailEditText.background = it
+                    passwordEditText.background = it
+                    confirmPasswordEditText.background = it
+                }
         }
     }
 }

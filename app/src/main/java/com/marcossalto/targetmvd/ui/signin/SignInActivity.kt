@@ -1,14 +1,23 @@
 package com.marcossalto.targetmvd.ui.signin
 
 import android.Manifest
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModelProviders
+import com.facebook.AccessToken
+import com.facebook.CallbackManager
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
+import com.facebook.login.LoginManager
+import com.facebook.login.LoginResult
 import com.marcossalto.targetmvd.R
 import com.marcossalto.targetmvd.databinding.ActivitySignInBinding
 import com.marcossalto.targetmvd.metrics.Analytics
 import com.marcossalto.targetmvd.metrics.PageEvents
 import com.marcossalto.targetmvd.metrics.VISIT_SIGN_IN
+import com.marcossalto.targetmvd.network.models.AccessTokenSerializer
 import com.marcossalto.targetmvd.network.models.UserSignIn
 import com.marcossalto.targetmvd.ui.profile.ProfileActivity
 import com.marcossalto.targetmvd.ui.signup.SignUpActivity
@@ -20,10 +29,14 @@ import com.marcossalto.targetmvd.util.extensions.toast
 import com.marcossalto.targetmvd.util.extensions.value
 import com.marcossalto.targetmvd.util.permissions.PermissionActivity
 import com.marcossalto.targetmvd.util.permissions.PermissionResponse
+import java.util.*
+
 
 class SignInActivity : PermissionActivity(), AuthView {
     private lateinit var viewModel: SignInActivityViewModel
     private lateinit var binding: ActivitySignInBinding
+    private var callbackManager: CallbackManager? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -41,16 +54,24 @@ class SignInActivity : PermissionActivity(), AuthView {
             passwordEditText.setOnFocusChangeListener { _, b -> clearErrorState(b) }
             signInButton.setOnClickListener { signIn() }
             signUpButton.setOnClickListener { signUp() }
+            loginButton.setOnClickListener { login() }
         }
 
         lifecycle.addObserver(viewModel)
 
         sampleAskForPermission()
+
+        val accessToken = AccessToken.getCurrentAccessToken()
+        val isLoggedIn = accessToken != null && !accessToken.isExpired
+
+        if(isLoggedIn){
+            toast("Sesion iniciada con FB $accessToken" )
+        }
+
     }
 
-
-    override fun showProfile() {
-        startActivityClearTask(ProfileActivity())
+    override fun showFeed() {
+        toast("Navigate to FeedActivity")
     }
 
     private fun signIn() {
@@ -70,12 +91,41 @@ class SignInActivity : PermissionActivity(), AuthView {
         startActivityClearTask(SignUpActivity())
     }
 
+    private fun login(){
+        callbackManager = CallbackManager.Factory.create()
+        LoginManager.getInstance().logInWithReadPermissions(
+            this, Arrays.asList(
+                "public_profile",
+                "email"
+            )
+        )
+        LoginManager.getInstance().registerCallback(callbackManager,
+            object : FacebookCallback<LoginResult> {
+                override fun onSuccess(loginResult: LoginResult) {
+                    val accessToken = AccessTokenSerializer(
+                        access_token = loginResult.accessToken.token
+                    )
+                    viewModel.login(accessToken)
+                }
+
+                override fun onCancel() {
+                    Log.d("MainActivity", "Facebook onCancel.")
+
+                }
+
+                override fun onError(error: FacebookException) {
+                    Log.d("MainActivity", "Facebook onError.")
+
+                }
+            })
+    }
+
     // ViewModelListener
     private val viewModelListener = object : ViewModelListener {
         override fun updateState() {
             when (viewModel.state) {
                 SignInState.FAILURE -> showError(viewModel.error)
-                SignInState.SUCCESS -> showProfile()
+                SignInState.SUCCESS -> showFeed()
                 else -> {
                 }
             }
@@ -113,8 +163,11 @@ class SignInActivity : PermissionActivity(), AuthView {
                     text = message
                     visibility = View.VISIBLE
                 }
-                emailEditText.background = resources.getDrawable(R.drawable.edit_text_red)
-                passwordEditText.background = resources.getDrawable(R.drawable.edit_text_red)
+                resources.getDrawable(R.drawable.edit_text_red, null)
+                    .also {
+                        emailEditText.background = it
+                        passwordEditText.background = it
+                    }
             }
 
         }
@@ -126,8 +179,17 @@ class SignInActivity : PermissionActivity(), AuthView {
                 text = ""
                 visibility = View.GONE
             }
-            emailEditText.background = resources.getDrawable(R.drawable.edit_text_normal)
-            passwordEditText.background = resources.getDrawable(R.drawable.edit_text_normal)
+            resources.getDrawable(R.drawable.edit_text_normal, null)
+                .also {
+                    emailEditText.background = it
+                    passwordEditText.background = it
+                }
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        callbackManager?.onActivityResult(requestCode, resultCode, data)
     }
 }

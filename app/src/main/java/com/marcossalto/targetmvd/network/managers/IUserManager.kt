@@ -7,4 +7,5 @@ interface IUserManager {
     suspend fun signUp(user: UserSignUp): Result<Data<UserSerializer>>
     suspend fun signIn(user: UserSignIn): Result<Data<UserSignInResponseSerializer>>
     suspend fun signOut(): Result<Data<Void>>
+    suspend fun login(accessToken: AccessTokenSerializer): Result<Data<UserSignInResponseSerializer>>
 }
