@@ -15,6 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TargetMVD">
         <activity
+            android:name=".ui.profile.ProfileActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.TargetMVD.NoActionBar.FullScreen" />
+        <activity
             android:name=".ui.signup.SignUpActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.TargetMVD.NoActionBar.FullScreen" />

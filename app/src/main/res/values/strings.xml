@@ -21,4 +21,14 @@
     <string name="error">ERROR</string>
     <string name="ok">OK</string>
     <string name="default_error">Oops! Network error</string>
+    <string name="uc_username">USERNAME</string>
+    <string name="uc_save_changes">SAVE CHANGES</string>
+    <string name="log_out">Log out</string>
+    <string name="email_or_password_cannot_be_empty">email or password cannot be empty</string>
+    <string name="name_cannot_be_empty">name cannot be empty</string>
+    <string name="email_cannot_be_empty">email cannot be empty</string>
+    <string name="password_cannot_be_empty">password cannot be empty</string>
+    <string name="confirm_password_cannot_be_empty">confirm password cannot be empty</string>
+    <string name="gender_cannot_be_empty">gender cannot be empty</string>
+    <string name="select_your_gender">SELECT YOUR GENDER</string>
 </resources>

@@ -6,39 +6,50 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     android:orientation="vertical"
-    tools:context=".ui.signin.SignInActivity">
+    tools:context=".ui.profile.ProfileActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        tools:context=".ui.profile.ProfileActivity">
 
         <ImageView
-            android:id="@+id/oval_yellow_sign_in"
+            android:id="@+id/oval_light_blue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="59dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/oval_sign_in"
-            tools:ignore="ContentDescription" />
+            app:srcCompat="@drawable/oval_copy_profile" />
 
         <ImageView
-            android:id="@+id/oval_light_blue_sign_in"
+            android:id="@+id/oval_yellow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="170dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/oval_copy_sign_in"
-            tools:ignore="ContentDescription" />
+            app:srcCompat="@drawable/oval_profile" />
+
+        <ImageView
+            android:id="@+id/user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/oval_light_blue"
+            app:layout_constraintEnd_toEndOf="@+id/oval_light_blue"
+            app:layout_constraintStart_toStartOf="@+id/oval_light_blue"
+            app:layout_constraintTop_toBottomOf="@+id/profile_text_view"
+            app:srcCompat="@drawable/user_profile" />
 
         <TextView
-            android:id="@+id/target_mvd_text_view"
+            android:id="@+id/profile_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/open_sans_semibold"
-            android:letterSpacing="0.2"
-            android:text="@string/target_mvd"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="@+id/oval_light_blue_sign_in"
+            android:layout_marginTop="32dp"
+            android:text="PROFILE"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -47,10 +58,41 @@
             android:id="@+id/user_name_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="170dp"
+            android:layout_marginTop="202dp"
+            android:letterSpacing="0.2"
+            android:text="@string/uc_username"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/user_name_edit_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="221dp"
+            android:autofillHints=""
+            android:background="@drawable/edit_text_normal"
+            android:ems="10"
+            android:inputType="text"
+            android:letterSpacing="0.1"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="LabelFor"
+            tools:text="marcos.salto" />
+
+        <TextView
+            android:id="@+id/email_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="269dp"
             android:letterSpacing="0.2"
             android:text="@string/uc_email"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -58,110 +100,76 @@
             android:id="@+id/email_edit_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="189dp"
+            android:layout_marginTop="287dp"
             android:autofillHints=""
             android:background="@drawable/edit_text_normal"
             android:ems="10"
             android:inputType="textEmailAddress"
             android:letterSpacing="0.1"
-            android:padding="10dp"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="LabelFor"
-            tools:text="top@tierlabs.com" />
+            tools:text="marcos.salto@rootstrap.com" />
+
+        <EditText
+            android:id="@+id/password_edit_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="355dp"
+            android:background="@drawable/edit_text_normal"
+            android:ems="10"
+            android:hint="@string/min_6_characters_long"
+            android:importantForAutofill="no"
+            android:inputType="textPassword"
+            android:letterSpacing="0.1"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="LabelFor"
+            tools:visibility="visible" />
 
         <TextView
             android:id="@+id/password_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="250dp"
+            android:layout_marginTop="337dp"
             android:letterSpacing="0.2"
             android:text="@string/uc_password"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/password_edit_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="268dp"
-            android:background="@drawable/edit_text_normal"
-            android:ems="10"
-            android:importantForAutofill="no"
-            android:inputType="textPassword"
-            android:letterSpacing="0.1"
-            android:padding="10dp"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="LabelFor"
-            tools:text="0123456789"
-            tools:visibility="visible" />
-
         <Button
-            android:id="@+id/sign_in_button"
+            android:id="@+id/save_changes_button"
             style="@style/Widget.AppCompat.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="331dp"
-            android:width="121dp"
+            android:layout_marginTop="431dp"
+            android:width="170dp"
             android:letterSpacing="0.2"
-            android:text="@string/uc_sign_in"
+            android:text="@string/uc_save_changes"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/forgot_your_password_sign_in"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="379dp"
-            android:text="@string/forgot_your_password"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/connect_with_facebook_sign_in"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="415dp"
-            android:letterSpacing="0.2"
-            android:text="@string/uc_connect_with_facebook"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.51"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/sign_up_button"
+            android:id="@+id/logout_button"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="450dp"
-            android:width="121dp"
+            android:layout_marginTop="510dp"
+            android:width="170dp"
             android:letterSpacing="0.2"
-            android:text="@string/uc_sign_up"
+            android:text="@string/log_out"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/error_message_sign_in"
-            style="@style/Theme.TargetMVD.Error"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="312dp"
-            android:text="@string/this_email_and_password_don_t_match"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

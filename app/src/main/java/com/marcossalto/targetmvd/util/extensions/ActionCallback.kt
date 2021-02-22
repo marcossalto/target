@@ -2,6 +2,7 @@ package com.marcossalto.targetmvd.util.extensions
 
 import com.google.gson.Gson
 import com.marcossalto.targetmvd.network.models.ErrorModel
+import com.marcossalto.targetmvd.network.models.UnprocessableEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Call
@@ -24,11 +25,32 @@ class ActionCallback {
                 )
             } else {
                 try {
+                    var errorMessage = ""
+
                     response.errorBody()?.let {
-                        val apiError = Gson().fromJson(it.charStream(), ErrorModel::class.java)
+                        when(response.code()){
+                            401 -> {
+                                val apiError = Gson().fromJson(it.charStream(), ErrorModel::class.java)
+                                errorMessage = apiError.errors[0]
+                            }
+                            400 -> {
+                                errorMessage = "Bad Request"
+                            }
+                            422 -> {
+                                errorMessage = "Unprocessable Entity"
+                                val apiError = Gson().fromJson(it.charStream(), UnprocessableEntity::class.java)
+                                errorMessage = apiError.errors.full_messages.joinToString()
+                            }
+                            500 -> {
+                                errorMessage = "Internal Server Error"
+                            }
+                            else -> {
+                                errorMessage = "Unknown Error"
+                            }
+                        }
                         return Result.failure(
                             ApiException(
-                                errorMessage = apiError.error
+                                errorMessage = errorMessage
                             )
                         )
                     }
@@ -36,7 +58,7 @@ class ActionCallback {
                 }
             }
 
-            return Result.failure(ApiException(errorType = ApiErrorType.unknownError))
+            return Result.failure(ApiException(errorType = ApiErrorType.UNKNOWN_ERROR))
         }
     }
 }
@@ -45,13 +67,13 @@ class Data<T>(val value: T?)
 
 class ApiException(
     private val errorMessage: String? = null,
-    val errorType: ApiErrorType = ApiErrorType.apiError
+    val errorType: ApiErrorType = ApiErrorType.API_ERROR
 ) : java.lang.Exception() {
     override val message: String?
         get() = errorMessage
 }
 
 enum class ApiErrorType {
-    apiError,
-    unknownError
+    API_ERROR,
+    UNKNOWN_ERROR
 }

@@ -13,7 +13,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/ivOval"
+            android:id="@+id/oval_yellow_sign_up"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
@@ -22,7 +22,7 @@
             tools:ignore="ContentDescription" />
 
         <ImageView
-            android:id="@+id/ivOvalCopy"
+            android:id="@+id/oval_light_blue_sign_up"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -31,7 +31,7 @@
             tools:ignore="ContentDescription" />
 
         <TextView
-            android:id="@+id/tvTargetMVD"
+            android:id="@+id/target_mvd_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="35dp"
@@ -44,7 +44,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvName"
+            android:id="@+id/name_text_view_sign_up"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="87dp"
@@ -56,12 +56,13 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/etName"
+            android:id="@+id/name_edit_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="106dp"
             android:autofillHints=""
             android:ems="10"
+            android:background="@drawable/edit_text_normal"
             android:inputType="textPersonName"
             android:letterSpacing="0.1"
             android:textAlignment="center"
@@ -73,11 +74,11 @@
             tools:text="Marcos Salto" />
 
         <TextView
-            android:id="@+id/tvNameMessage"
+            android:id="@+id/name_message_text_view"
             style="@style/Theme.TargetMVD.Error"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="143dp"
+            android:layout_marginTop="146dp"
             android:text="@string/you_forgot_to_put_your_name"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
@@ -86,7 +87,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvEmail"
+            android:id="@+id/email_text_view_sign_up"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="160dp"
@@ -103,6 +104,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="178dp"
             android:autofillHints=""
+            android:background="@drawable/edit_text_normal"
             android:ems="10"
             android:inputType="textEmailAddress"
             android:letterSpacing="0.1"
@@ -115,11 +117,11 @@
             tools:text="marcos.salto@rootstrap.com" />
 
         <TextView
-            android:id="@+id/tvEmailMessage"
+            android:id="@+id/email_message_text_view"
             style="@style/Theme.TargetMVD.Error"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="215dp"
+            android:layout_marginTop="218dp"
             android:text="@string/oops_this_email_is_not_valid"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
@@ -132,6 +134,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="251dp"
+            android:background="@drawable/edit_text_normal"
             android:ems="10"
             android:hint="@string/min_6_characters_long"
             android:importantForAutofill="no"
@@ -146,7 +149,7 @@
             tools:visibility="visible" />
 
         <TextView
-            android:id="@+id/tvPassword"
+            android:id="@+id/password_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="233dp"
@@ -157,11 +160,11 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvPasswordMessage"
+            android:id="@+id/password_message_text_view"
             style="@style/Theme.TargetMVD.Error"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="288dp"
+            android:layout_marginTop="291dp"
             android:text="@string/the_password_must_be_6_character_long"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
@@ -170,7 +173,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvConfirmPassword"
+            android:id="@+id/confirm_password_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="306dp"
@@ -181,10 +184,11 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/etConfirmPassword"
+            android:id="@+id/confirm_password_edit_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="324dp"
+            android:background="@drawable/edit_text_normal"
             android:ems="10"
             android:importantForAutofill="no"
             android:inputType="textPassword"
@@ -198,11 +202,11 @@
             tools:visibility="visible" />
 
         <TextView
-            android:id="@+id/tvConfirmPasswordMessage"
+            android:id="@+id/confirm_password_message"
             style="@style/Theme.TargetMVD.Error"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="361dp"
+            android:layout_marginTop="364dp"
             android:text="@string/password_don_t_match"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
@@ -211,7 +215,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvGender"
+            android:id="@+id/gender_text_view_sign_up"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="376dp"
@@ -222,29 +226,27 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/etGender"
-            android:layout_width="wrap_content"
+        <Spinner
+            android:id="@+id/gender_spinner"
+            style="@style/spinner_style"
+            android:layout_width="246dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="394dp"
-            android:autofillHints=""
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:letterSpacing="0.1"
-            android:textAlignment="center"
+            android:entries="@array/gender"
+            android:gravity="center_horizontal"
+            android:prompt="@string/select_your_gender"
+            android:spinnerMode="dropdown"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="LabelFor"
-            tools:text="SELECT YOUR GENDER" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvGenderMessage"
+            android:id="@+id/gender_message_text_view"
             style="@style/Theme.TargetMVD.Error"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="431dp"
+            android:layout_marginTop="440dp"
             android:text="@string/you_forgot_to_select_your_gender"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
@@ -253,7 +255,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/btnSignUp"
+            android:id="@+id/sign_up_button_sign_up"
             style="@style/Widget.AppCompat.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -267,7 +269,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/sign_in_button"
+            android:id="@+id/sign_in_button_sign_up"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

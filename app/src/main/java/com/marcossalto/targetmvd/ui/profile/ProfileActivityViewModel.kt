@@ -1,12 +1,10 @@
-package com.marcossalto.targetmvd.ui.signin
+package com.marcossalto.targetmvd.ui.profile
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.marcossalto.targetmvd.network.managers.IUserManager
-import com.marcossalto.targetmvd.network.managers.SessionManager
 import com.marcossalto.targetmvd.network.managers.UserManager
-import com.marcossalto.targetmvd.network.models.UserSignIn
 import com.marcossalto.targetmvd.ui.base.BaseViewModel
 import com.marcossalto.targetmvd.util.NetworkState
 import com.marcossalto.targetmvd.util.ViewModelListener
@@ -14,27 +12,17 @@ import com.marcossalto.targetmvd.util.extensions.ApiErrorType
 import com.marcossalto.targetmvd.util.extensions.ApiException
 import kotlinx.coroutines.launch
 
-open class SignInActivityViewModel(listener: ViewModelListener?) : BaseViewModel(listener) {
+open class ProfileActivityViewModel(listener: ViewModelListener?) : BaseViewModel(listener) {
 
     private val manager: IUserManager = UserManager
 
-    var state: SignInState = SignInState.NONE
-        set(value) {
-            field = value
-            listener?.updateState()
-        }
-
-    fun signIn(user: UserSignIn) {
+    fun signOut() {
         networkState = NetworkState.LOADING
         viewModelScope.launch {
-            val result = manager.signIn(user = user)
+            val result = manager.signOut()
             if (result.isSuccess) {
-                result.getOrNull()?.value?.data?.let { user ->
-                    SessionManager.signIn(user)
-                }
-
                 networkState = NetworkState.IDLE
-                state = SignInState.SUCCESS
+                state = ProfileState.SUCCESS
             } else {
                 handleError(result.exceptionOrNull())
             }
@@ -48,18 +36,26 @@ open class SignInActivityViewModel(listener: ViewModelListener?) : BaseViewModel
 
         networkState = NetworkState.IDLE
         networkState = NetworkState.ERROR
-        state = SignInState.FAILURE
+        state = ProfileState.FAILURE
     }
+
+    var state: ProfileState = ProfileState.NONE
+        set(value) {
+            field = value
+            listener?.updateState()
+        }
 }
 
-enum class SignInState {
+enum class ProfileState {
     FAILURE,
     SUCCESS,
     NONE,
 }
 
-class SignInActivityViewModelFactory(var listener: ViewModelListener?) : ViewModelProvider.Factory {
+class ProfileActivityViewModelFactory(var listener: ViewModelListener?) :
+    ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return SignInActivityViewModel(listener) as T
+        return ProfileActivityViewModel(listener) as T
     }
 }
+
