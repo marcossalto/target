@@ -1,5 +1,6 @@
 package com.marcossalto.targetmvd.util.permissions
 
+import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -14,7 +15,12 @@ interface PermissionResponse {
     fun foreverDenied()
 }
 
-val REQUEST_PERMISSION_REQUEST_CODE = 999
+const val REQUEST_PERMISSION_REQUEST_CODE = 999
+
+val locationPermissions = arrayOf(
+    Manifest.permission.ACCESS_COARSE_LOCATION,
+    Manifest.permission.ACCESS_FINE_LOCATION
+)
 
 fun Context.checkPermission(permission: String): Boolean =
     Build.VERSION.SDK_INT < Build.VERSION_CODES.M || ContextCompat.checkSelfPermission(

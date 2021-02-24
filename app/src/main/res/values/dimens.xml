@@ -3,4 +3,9 @@
     <!-- General -->
     <dimen name="loader_padding">30dp</dimen>
     <dimen name="loader_radius">10dp</dimen>
+    <dimen name="no_dimen">0dp</dimen>
+    <dimen name="text_size_12">12sp</dimen>
+    <dimen name="text_size_14">14sp</dimen>
+    <dimen name="margin_normal_30">30dp</dimen>
+    <dimen name="margin_small_10">10dp</dimen>
 </resources>

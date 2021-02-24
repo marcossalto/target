@@ -6,8 +6,6 @@ data class ErrorModel(
     @Json(name = "errors") val errors: List<String>
 )
 
-data class ErrorModelSerializer(val error: ErrorModel)
-
 data class UnprocessableEntity(
     @Json(name = "status") val status: String,
     @Json(name = "data") val data: User,
