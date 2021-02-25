@@ -24,17 +24,19 @@ open class BaseFragment : Fragment(), BaseView {
     }
 
     override fun showError(message: String?) {
+        val builderMessage = if(message.isNullOrBlank())
+            getString(R.string.generic_error)
+        else
+            message
+
         val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle(getString(R.string.error))
 
-        when (message) {
-            "" -> builder.setMessage(getString(R.string.generic_error))
-            null -> builder.setMessage(getString(R.string.generic_error))
-            else -> builder.setMessage(message)
-        }
-
-        builder.setPositiveButton(getString(R.string.ok)) { dialog, _ ->
-            dialog.cancel()
+        builder.apply {
+            setTitle(getString(R.string.error))
+            setMessage(builderMessage)
+            setPositiveButton(getString(R.string.ok)) { dialog, _ ->
+                dialog.cancel()
+            }
         }
 
         val dialog: AlertDialog = builder.create()

@@ -20,8 +20,7 @@ class TargetActivity : PermissionActivity() {
         binding = ActivityTargetBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        Analytics.track(PageEvents.visit(VISIT_TARGET
-        ))
+        Analytics.track(PageEvents.visit(VISIT_TARGET))
 
         val factory = TargetActivityViewModelFactory()
         viewModel = ViewModelProvider(this, factory)

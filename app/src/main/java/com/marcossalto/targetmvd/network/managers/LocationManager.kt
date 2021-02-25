@@ -10,9 +10,11 @@ object LocationManager : ILocationManager {
     private var fusedLocationProviderClient: FusedLocationProviderClient? = null
 
     override fun saveLocation(lat: Double, lng: Double) {
-        UserLocation.latitude = lat
-        UserLocation.longitude = lng
-        UserLocation.locationState = LocationState.SUCCESS
+        UserLocation.apply {
+            latitude = lat
+            longitude = lng
+            locationState = LocationState.SUCCESS
+        }
     }
 
     override fun isStateSuccess(): Boolean {
