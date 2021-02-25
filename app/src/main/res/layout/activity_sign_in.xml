@@ -37,38 +37,37 @@
             android:fontFamily="@font/open_sans_semibold"
             android:letterSpacing="0.2"
             android:text="@string/target_mvd"
-            android:textSize="24sp"
+            android:textSize="@dimen/text_size_24"
             app:layout_constraintBottom_toBottomOf="@+id/oval_light_blue_sign_in"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/user_name_text_view"
+            android:id="@+id/email_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="170dp"
+            android:layout_marginTop="@dimen/margin_20"
             android:letterSpacing="0.2"
             android:text="@string/uc_email"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/oval_yellow_sign_in" />
 
         <EditText
             android:id="@+id/email_edit_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="189dp"
             android:autofillHints=""
             android:background="@drawable/edit_text_normal"
             android:ems="10"
             android:inputType="textEmailAddress"
             android:letterSpacing="0.1"
-            android:padding="10dp"
+            android:padding="@dimen/edit_text_padding"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/email_text_view"
             tools:ignore="LabelFor"
             tools:text="top@tierlabs.com" />
 
@@ -76,28 +75,27 @@
             android:id="@+id/password_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="250dp"
             android:letterSpacing="0.2"
+            android:layout_marginTop="@dimen/margin_20"
             android:text="@string/uc_password"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/email_edit_text" />
 
         <EditText
             android:id="@+id/password_edit_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="268dp"
             android:background="@drawable/edit_text_normal"
             android:ems="10"
             android:importantForAutofill="no"
             android:inputType="textPassword"
             android:letterSpacing="0.1"
-            android:padding="10dp"
+            android:padding="@dimen/edit_text_padding"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/password_text_view"
             tools:ignore="LabelFor"
             tools:text="0123456789"
             tools:visibility="visible" />
@@ -107,59 +105,57 @@
             style="@style/Widget.AppCompat.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="331dp"
+            android:layout_marginTop="@dimen/margin_30"
             android:width="121dp"
             android:letterSpacing="0.2"
             android:text="@string/uc_sign_in"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/password_edit_text" />
 
         <TextView
             android:id="@+id/forgot_your_password_sign_in"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="379dp"
             android:text="@string/forgot_your_password"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/sign_in_button" />
 
         <com.facebook.login.widget.LoginButton
             android:id="@+id/login_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="415dp"
+            android:layout_marginTop="@dimen/margin_30"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/forgot_your_password_sign_in" />
 
         <Button
             android:id="@+id/sign_up_button"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="450dp"
+            android:layout_marginTop="@dimen/margin_20"
             android:width="121dp"
             android:letterSpacing="0.2"
             android:text="@string/uc_sign_up"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/login_button" />
 
         <TextView
             android:id="@+id/error_message_sign_in"
             style="@style/Theme.TargetMVD.Error"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="312dp"
             android:text="@string/this_email_and_password_don_t_match"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/password_edit_text" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

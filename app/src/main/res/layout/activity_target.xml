@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:background="@android:color/white"
             android:orientation="vertical"
-            android:paddingVertical="@dimen/margin_small_10"
+            android:paddingVertical="@dimen/margin_10"
             map:layout_constraintBottom_toBottomOf="parent">
 
             <ImageView
@@ -47,7 +47,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:layout_marginTop="@dimen/margin_small_10"
+                android:layout_marginTop="@dimen/margin_10"
                 android:gravity="center"
                 android:text="@string/create_new_target"
                 android:fontFamily="@font/open_sans_semibold"
