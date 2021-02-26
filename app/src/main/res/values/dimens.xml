@@ -11,5 +11,8 @@
     <dimen name="margin_20">20dp</dimen>
     <dimen name="margin_30">30dp</dimen>
     <dimen name="edit_text_padding">10dp</dimen>
+    <dimen name="width_signin_button">121dp</dimen>
+    <dimen name="width_signup_button">121dp</dimen>
+    <dimen name="width_spinner_gender">246dp</dimen>
 </resources>
 
