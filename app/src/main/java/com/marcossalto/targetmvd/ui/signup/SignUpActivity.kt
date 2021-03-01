@@ -12,6 +12,7 @@ import com.marcossalto.targetmvd.metrics.VISIT_SIGN_UP
 import com.marcossalto.targetmvd.network.models.UserSignUp
 import com.marcossalto.targetmvd.ui.base.BaseActivity
 import com.marcossalto.targetmvd.ui.signin.SignInActivity
+import com.marcossalto.targetmvd.ui.target.TargetActivity
 import com.marcossalto.targetmvd.ui.view.AuthView
 import com.marcossalto.targetmvd.util.NetworkState
 import com.marcossalto.targetmvd.util.ViewModelListener
@@ -60,7 +61,7 @@ class SignUpActivity : BaseActivity(), AuthView {
     }
 
     override fun showFeed() {
-        toast("Navigate to FeedActivity")
+        startActivityClearTask(TargetActivity())
     }
 
     private fun signUp() {
@@ -106,11 +107,11 @@ class SignUpActivity : BaseActivity(), AuthView {
                 }
                 else -> {
                     val userSignUp = UserSignUp(
-                        userName = nameEditText.value().replace(" ","").trim().toLowerCase(),
+                        username = nameEditText.value().replace(" ","").trim().toLowerCase(),
                         email = emailEditText.value(),
                         gender = genderSpinner.getItemAtPosition(genderSpinner.selectedItemPosition).toString().toLowerCase(),
                         password = passwordEditText.value(),
-                        passwordConfirmation = confirmPasswordEditText.value()
+                        password_confirmation = confirmPasswordEditText.value()
                     )
                     viewModel.signUp(userSignUp)
                 }

@@ -30,7 +30,7 @@ open class SignInActivityViewModel(listener: ViewModelListener?) : BaseViewModel
         viewModelScope.launch {
             val result = manager.signIn(user = user)
             if (result.isSuccess) {
-                result.getOrNull()?.value?.data?.let { user ->
+                result.getOrNull()?.value?.user?.let { user ->
                     SessionManager.signIn(user)
                 }
 
@@ -47,7 +47,7 @@ open class SignInActivityViewModel(listener: ViewModelListener?) : BaseViewModel
         viewModelScope.launch {
             val result = manager.login(accessToken = accessToken)
             if (result.isSuccess) {
-                result.getOrNull()?.value?.data?.let { user ->
+                result.getOrNull()?.value?.user?.let { user ->
                     SessionManager.signIn(user)
                 }
 
