@@ -33,4 +33,7 @@
     <string name="select_your_gender">SELECT YOUR GENDER</string>
     <string name="facebook_app_id">876877256214170</string>
     <string name="fb_login_protocol_scheme">fb876877256214170</string>
+    <string name="create_new_target">CREATE NEW TARGET</string>
+    <string name="target_points">Target Points</string>
+    <string name="uc_profile">PROFILE</string>
 </resources>

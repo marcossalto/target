@@ -17,22 +17,23 @@
             android:id="@+id/oval_light_blue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="59dp"
+            android:layout_marginTop="@dimen/margin_10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/oval_copy_profile" />
+            app:layout_constraintTop_toBottomOf="@+id/profile_text_view"
+            app:srcCompat="@drawable/oval_copy_profile"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/oval_yellow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
             android:layout_marginEnd="170dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/oval_profile" />
+            app:layout_constraintTop_toTopOf="@+id/profile_text_view"
+            app:srcCompat="@drawable/oval_profile"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/user"
@@ -42,14 +43,16 @@
             app:layout_constraintEnd_toEndOf="@+id/oval_light_blue"
             app:layout_constraintStart_toStartOf="@+id/oval_light_blue"
             app:layout_constraintTop_toBottomOf="@+id/profile_text_view"
-            app:srcCompat="@drawable/user_profile" />
+            app:srcCompat="@drawable/user_profile"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/profile_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="PROFILE"
+            android:layout_marginTop="@dimen/margin_30"
+            android:letterSpacing="0.2"
+            android:text="@string/uc_profile"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -58,19 +61,18 @@
             android:id="@+id/user_name_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="202dp"
+            android:layout_marginTop="@dimen/margin_20"
             android:letterSpacing="0.2"
             android:text="@string/uc_username"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/oval_light_blue" />
 
         <EditText
             android:id="@+id/user_name_edit_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="221dp"
             android:autofillHints=""
             android:background="@drawable/edit_text_normal"
             android:ems="10"
@@ -80,7 +82,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/user_name_text_view"
             tools:ignore="LabelFor"
             tools:text="marcos.salto" />
 
@@ -88,19 +90,18 @@
             android:id="@+id/email_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="269dp"
+            android:layout_marginTop="@dimen/margin_20"
             android:letterSpacing="0.2"
             android:text="@string/uc_email"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/user_name_edit_text" />
 
         <EditText
             android:id="@+id/email_edit_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="287dp"
             android:autofillHints=""
             android:background="@drawable/edit_text_normal"
             android:ems="10"
@@ -110,7 +111,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/email_text_view"
             tools:ignore="LabelFor"
             tools:text="marcos.salto@rootstrap.com" />
 
@@ -118,7 +119,6 @@
             android:id="@+id/password_edit_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="355dp"
             android:background="@drawable/edit_text_normal"
             android:ems="10"
             android:hint="@string/min_6_characters_long"
@@ -129,7 +129,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/password_text_view"
             tools:ignore="LabelFor"
             tools:visibility="visible" />
 
@@ -137,39 +137,39 @@
             android:id="@+id/password_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="337dp"
+            android:layout_marginTop="@dimen/margin_20"
             android:letterSpacing="0.2"
             android:text="@string/uc_password"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/email_edit_text" />
 
         <Button
             android:id="@+id/save_changes_button"
             style="@style/Widget.AppCompat.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="431dp"
+            android:layout_marginTop="@dimen/margin_20"
             android:width="170dp"
             android:letterSpacing="0.2"
             android:text="@string/uc_save_changes"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.51"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/password_edit_text" />
 
         <Button
             android:id="@+id/logout_button"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="510dp"
+            android:layout_marginTop="@dimen/margin_30"
             android:width="170dp"
             android:letterSpacing="0.2"
             android:text="@string/log_out"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/save_changes_button" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

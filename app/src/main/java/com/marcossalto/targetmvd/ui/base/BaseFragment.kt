@@ -1,21 +1,17 @@
 package com.marcossalto.targetmvd.ui.base
 
-import android.annotation.SuppressLint
-import android.app.Activity
 import android.app.AlertDialog
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.marcossalto.targetmvd.R
 import com.marcossalto.targetmvd.ui.custom.LoadingDialog
 
-@SuppressLint("Registered")
-open class BaseActivity : AppCompatActivity(), BaseView {
+open class BaseFragment : Fragment(), BaseView {
 
     private var loadingDialog: LoadingDialog? = null
 
     override fun showProgress() {
         if (loadingDialog == null) {
-            loadingDialog = LoadingDialog(this, null)
+            loadingDialog = LoadingDialog(requireContext(), null)
         }
 
         loadingDialog!!.show()
@@ -33,7 +29,7 @@ open class BaseActivity : AppCompatActivity(), BaseView {
         else
             message
 
-        val builder = AlertDialog.Builder(this)
+        val builder = AlertDialog.Builder(requireContext())
 
         builder.apply {
             setTitle(getString(R.string.error))
@@ -45,12 +41,5 @@ open class BaseActivity : AppCompatActivity(), BaseView {
 
         val dialog: AlertDialog = builder.create()
         dialog.show()
-    }
-
-    protected fun startActivityClearTask(activity: Activity) {
-        val intent = Intent(this, activity.javaClass)
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-        startActivity(intent)
     }
 }

@@ -34,11 +34,11 @@
             android:id="@+id/target_mvd_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
             android:fontFamily="@font/open_sans_semibold"
             android:letterSpacing="0.2"
             android:text="@string/target_mvd"
-            android:textSize="24sp"
+            android:textSize="@dimen/text_size_24"
+            app:layout_constraintBottom_toBottomOf="@+id/oval_yellow_sign_up"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -47,29 +47,27 @@
             android:id="@+id/name_text_view_sign_up"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="87dp"
             android:letterSpacing="0.2"
             android:text="@string/uc_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/oval_yellow_sign_up" />
 
         <EditText
             android:id="@+id/name_edit_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="106dp"
             android:autofillHints=""
-            android:ems="10"
             android:background="@drawable/edit_text_normal"
+            android:ems="10"
             android:inputType="textPersonName"
             android:letterSpacing="0.1"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name_text_view_sign_up"
             tools:ignore="LabelFor"
             tools:text="Marcos Salto" />
 
@@ -78,31 +76,29 @@
             style="@style/Theme.TargetMVD.Error"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="146dp"
             android:text="@string/you_forgot_to_put_your_name"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/name_edit_text" />
 
         <TextView
             android:id="@+id/email_text_view_sign_up"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="160dp"
+            android:layout_marginTop="@dimen/margin_20"
             android:letterSpacing="0.2"
             android:text="@string/uc_email"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/name_edit_text" />
 
         <EditText
             android:id="@+id/email_edit_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="178dp"
             android:autofillHints=""
             android:background="@drawable/edit_text_normal"
             android:ems="10"
@@ -112,7 +108,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/email_text_view_sign_up"
             tools:ignore="LabelFor"
             tools:text="marcos.salto@rootstrap.com" />
 
@@ -121,19 +117,17 @@
             style="@style/Theme.TargetMVD.Error"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="218dp"
             android:text="@string/oops_this_email_is_not_valid"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/email_edit_text" />
 
         <EditText
             android:id="@+id/password_edit_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="251dp"
             android:background="@drawable/edit_text_normal"
             android:ems="10"
             android:hint="@string/min_6_characters_long"
@@ -144,7 +138,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/password_text_view"
             tools:ignore="LabelFor"
             tools:visibility="visible" />
 
@@ -152,42 +146,40 @@
             android:id="@+id/password_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="233dp"
+            android:layout_marginTop="@dimen/margin_20"
             android:letterSpacing="0.2"
             android:text="@string/uc_password"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/email_edit_text" />
 
         <TextView
             android:id="@+id/password_message_text_view"
             style="@style/Theme.TargetMVD.Error"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="291dp"
             android:text="@string/the_password_must_be_6_character_long"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/password_edit_text" />
 
         <TextView
             android:id="@+id/confirm_password_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="306dp"
+            android:layout_marginTop="@dimen/margin_20"
             android:letterSpacing="0.2"
             android:text="@string/uc_confirm_password"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/password_edit_text" />
 
         <EditText
             android:id="@+id/confirm_password_edit_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="324dp"
             android:background="@drawable/edit_text_normal"
             android:ems="10"
             android:importantForAutofill="no"
@@ -197,7 +189,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/confirm_password_text_view"
             tools:ignore="LabelFor"
             tools:visibility="visible" />
 
@@ -206,32 +198,30 @@
             style="@style/Theme.TargetMVD.Error"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="364dp"
             android:text="@string/password_don_t_match"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/confirm_password_edit_text" />
 
         <TextView
             android:id="@+id/gender_text_view_sign_up"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="376dp"
+            android:layout_marginTop="@dimen/margin_20"
             android:letterSpacing="0.2"
             android:text="@string/uc_gender"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/confirm_password_edit_text" />
 
         <Spinner
             android:id="@+id/gender_spinner"
             style="@style/spinner_style"
-            android:layout_width="246dp"
+            android:layout_width="@dimen/width_spinner_gender"
             android:layout_height="wrap_content"
-            android:layout_marginTop="394dp"
             android:entries="@array/gender"
             android:gravity="center_horizontal"
             android:prompt="@string/select_your_gender"
@@ -239,48 +229,46 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/gender_text_view_sign_up" />
 
         <TextView
             android:id="@+id/gender_message_text_view"
             style="@style/Theme.TargetMVD.Error"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="440dp"
             android:text="@string/you_forgot_to_select_your_gender"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/gender_spinner" />
 
         <Button
             android:id="@+id/sign_up_button_sign_up"
             style="@style/Widget.AppCompat.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="465dp"
-            android:width="121dp"
+            android:layout_marginTop="@dimen/margin_20"
+            android:width="@dimen/width_signup_button"
             android:letterSpacing="0.2"
             android:text="@string/uc_sign_up"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.51"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/gender_spinner" />
 
         <Button
             android:id="@+id/sign_in_button_sign_up"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="537dp"
-            android:width="121dp"
+            android:width="@dimen/width_signin_button"
             android:letterSpacing="0.2"
             android:text="@string/uc_sign_in"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/sign_up_button_sign_up" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

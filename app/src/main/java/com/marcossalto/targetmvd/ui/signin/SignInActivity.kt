@@ -19,8 +19,8 @@ import com.marcossalto.targetmvd.metrics.PageEvents
 import com.marcossalto.targetmvd.metrics.VISIT_SIGN_IN
 import com.marcossalto.targetmvd.network.models.AccessTokenSerializer
 import com.marcossalto.targetmvd.network.models.UserSignIn
-import com.marcossalto.targetmvd.ui.profile.ProfileActivity
 import com.marcossalto.targetmvd.ui.signup.SignUpActivity
+import com.marcossalto.targetmvd.ui.target.TargetActivity
 import com.marcossalto.targetmvd.ui.view.AuthView
 import com.marcossalto.targetmvd.util.NetworkState
 import com.marcossalto.targetmvd.util.ViewModelListener
@@ -71,7 +71,7 @@ class SignInActivity : PermissionActivity(), AuthView {
     }
 
     override fun showFeed() {
-        toast("Navigate to FeedActivity")
+        startActivityClearTask(TargetActivity())
     }
 
     private fun signIn() {
