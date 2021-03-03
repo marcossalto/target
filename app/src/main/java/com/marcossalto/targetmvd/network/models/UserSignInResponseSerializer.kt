@@ -1,5 +1,7 @@
 package com.marcossalto.targetmvd.network.models
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
-data class UserSignInResponseSerializer(@Json(name = "data") val data: User)
+@JsonClass(generateAdapter = true)
+data class UserSignInResponseSerializer(@Json(name = "data") val user: User)

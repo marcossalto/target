@@ -22,4 +22,10 @@ interface ApiService {
 
     @POST("users/facebook")
     fun login(@Body accessTokenSerializer: AccessTokenSerializer): Call<UserSignInResponseSerializer>
+
+    @GET("topics")
+    fun getTopics(): Call<TopicsSerializer>
+
+    @GET("targets")
+    fun getTargets(): Call<TargetsSerializer>
 }

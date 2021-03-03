@@ -1,7 +1,7 @@
 plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
-    id 'kotlin-kapt'
+    id "com.android.application"
+    id "kotlin-android"
+    id "kotlin-kapt"
 }
 
 android {
@@ -31,7 +31,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
     }
 
@@ -41,7 +41,7 @@ android {
     }
     
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = "1.8"
     }
 
     flavorDimensions "server"
@@ -77,59 +77,65 @@ android {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1"
 
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation "androidx.appcompat:appcompat:1.2.0"
+    implementation "androidx.constraintlayout:constraintlayout:2.0.4"
+    implementation "androidx.core:core-ktx:1.3.2"
+    implementation "androidx.legacy:legacy-support-v4:1.0.0"
 
     // Lifecycle
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.3.0"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.3.0"
-    implementation 'androidx.lifecycle:lifecycle-common-java8:2.3.0'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation "androidx.lifecycle:lifecycle-common-java8:2.3.0"
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
 
     // Material
-    implementation 'com.google.android.material:material:1.3.0'
+    implementation "com.google.android.material:material:1.3.0"
 
     // Testing
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    testImplementation "junit:junit:4.13.2"
+    androidTestImplementation "androidx.test.ext:junit:1.1.2"
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.3.0"
+    androidTestImplementation "com.squareup.okhttp3:mockwebserver:4.3.1"
 
-    // Network
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.moshi:moshi:1.8.0'
-    implementation 'com.squareup.retrofit2:converter-moshi:2.5.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
+    // Moshi
+    implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+
+    // OkHttp
+    implementation "com.squareup.okhttp3:logging-interceptor:4.9.0"
 
     // Events
-    implementation 'com.squareup:otto:1.3.8'
+    implementation "com.squareup:otto:1.3.8"
 
     // Shared Preferences
     implementation "androidx.preference:preference-ktx:1.1.1"
 
     // Google JSON Serializer / Deserializer
-    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation "com.google.code.gson:gson:2.8.6"
 
     // MixPanel
-    implementation 'com.mixpanel.android:mixpanel-android:5.6.1'
+    implementation "com.mixpanel.android:mixpanel-android:5.6.1"
 
     // Firebase
-    implementation 'com.google.firebase:firebase-core:18.0.2'
-    implementation 'com.google.firebase:firebase-analytics:18.0.2'
+    implementation "com.google.firebase:firebase-core:18.0.2"
+    implementation "com.google.firebase:firebase-analytics:18.0.2"
 
     // Glide
-    implementation 'com.github.bumptech.glide:glide:4.12.0'
-    kapt 'com.github.bumptech.glide:compiler:4.12.0'
+    implementation "com.github.bumptech.glide:glide:4.12.0"
+    kapt "com.github.bumptech.glide:compiler:4.12.0"
 
     // Facebook Login
-    implementation 'com.facebook.android:facebook-login:8.1.0'
+    implementation "com.facebook.android:facebook-login:8.1.0"
 
     // Google Maps
-    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation "com.google.android.gms:play-services-maps:17.0.0"
 
     // Location
     implementation "com.google.android.gms:play-services-location:18.0.0"

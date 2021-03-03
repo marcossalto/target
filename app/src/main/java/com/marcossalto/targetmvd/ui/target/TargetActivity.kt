@@ -14,6 +14,7 @@ import com.marcossalto.targetmvd.util.permissions.PermissionActivity
 class TargetActivity : PermissionActivity() {
     private lateinit var viewModel: TargetActivityViewModel
     private lateinit var binding: ActivityTargetBinding
+    private lateinit var targetView: TargetView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,11 +40,15 @@ class TargetActivity : PermissionActivity() {
                 )
             )
         }
-
+        initTargetView()
     }
 
     private fun initMap() {
         val fragment = MapFragment.getInstance()
         supportFragmentManager.beginTransaction().replace(R.id.fragment_map, fragment).commit()
+    }
+
+    private fun initTargetView() {
+        targetView = TargetView(viewModel, this)
     }
 }
