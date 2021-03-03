@@ -58,7 +58,7 @@ class TargetActivityViewModel(
 
                 val targetsModels =
                     values.map { target ->
-                        target.toTargetModel(topics.firstOrNull { topic -> target.topic_id == topic.id })
+                        target.toTargetModel(topics.firstOrNull { topic -> target.topicId == topic.id })
                     }
                 targets.postValue(targetsModels)
             } else {

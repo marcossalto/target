@@ -103,7 +103,7 @@ class SignInActivity : PermissionActivity(), AuthView {
             object : FacebookCallback<LoginResult> {
                 override fun onSuccess(loginResult: LoginResult) {
                     val accessToken = AccessTokenSerializer(
-                        access_token = loginResult.accessToken.token
+                        accessToken = loginResult.accessToken.token
                     )
                     viewModel.login(accessToken)
                 }

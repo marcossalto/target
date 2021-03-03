@@ -111,7 +111,7 @@ class SignUpActivity : BaseActivity(), AuthView {
                         email = emailEditText.value(),
                         gender = genderSpinner.getItemAtPosition(genderSpinner.selectedItemPosition).toString().toLowerCase(),
                         password = passwordEditText.value(),
-                        password_confirmation = confirmPasswordEditText.value()
+                        passwordConfirmation = confirmPasswordEditText.value()
                     )
                     viewModel.signUp(userSignUp)
                 }
