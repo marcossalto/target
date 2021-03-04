@@ -14,7 +14,7 @@ object UserManager : IUserManager {
 
     private var service = ServiceProvider.create(ApiService::class.java)
 
-    override suspend fun signUp(user: UserSignUp): Result<Data<UserSerializer>> =
+    override suspend fun signUp(user: UserSignUp): Result<Data<User>> =
         ActionCallback.call(service.signUp(UserSignUpSerializer(user)))
 
     override suspend fun signIn(user: UserSignIn): Result<Data<UserSignInResponseSerializer>> =

@@ -41,8 +41,8 @@ class SignUpActivity : BaseActivity(), AuthView {
             confirmPasswordEditText.setOnFocusChangeListener { _, b -> clearErrorState(b) }
             genderSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
-                    parent: AdapterView<*>,
-                    view: View,
+                    parent: AdapterView<*>?,
+                    view: View?,
                     position: Int,
                     id: Long
                 ) {

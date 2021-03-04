@@ -12,7 +12,7 @@ interface ApiService {
     suspend fun checkServerStatus(): ServerStatusSerializer
 
     @POST("users/")
-    fun signUp(@Body user: UserSignUpSerializer): Call<UserSerializer>
+    fun signUp(@Body user: UserSignUpSerializer): Call<User>
 
     @POST("users/sign_in")
     fun signIn(@Body user: UserSignInSerializer): Call<UserSignInResponseSerializer>

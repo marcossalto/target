@@ -30,7 +30,7 @@ open class SignUpActivityViewModel(listener: ViewModelListener?) : BaseViewModel
             val result = manager.signUp(user = user)
 
             if (result.isSuccess) {
-                result.getOrNull()?.value?.user?.let { user ->
+                result.getOrNull()?.value?.let { user ->
                     SessionManager.signIn(user)
                 }
 
