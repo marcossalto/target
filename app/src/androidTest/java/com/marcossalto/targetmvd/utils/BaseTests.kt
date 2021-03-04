@@ -102,7 +102,6 @@ open class BaseTests {
         )
     }
 
-
     open fun scrollAndSelectItem(spinnerId: Int, selectionText: String){
         onView(ViewMatchers.withId(spinnerId)).perform(ViewActions.click())
         onData(anything()).atPosition(1).perform(click());

@@ -24,7 +24,7 @@ data class Avatar(
     @Json(name = "url") val url: String? = null,
     @Json(name = "normal") val normal: Normal = Normal(null),
     @Json(name = "small_thumb") val smallThumb: SmallThumb = SmallThumb(null)
-    )
+)
 
 @JsonClass(generateAdapter = true)
 data class Normal(
