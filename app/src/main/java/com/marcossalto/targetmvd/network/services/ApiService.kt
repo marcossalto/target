@@ -28,4 +28,7 @@ interface ApiService {
 
     @GET("targets")
     fun getTargets(): Call<TargetsSerializer>
+
+    @POST("targets")
+    fun createTarget(@Body target: TargetSerializer): Call<TargetSerializer>
 }

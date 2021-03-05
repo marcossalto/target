@@ -14,5 +14,10 @@
     <dimen name="width_signin_button">121dp</dimen>
     <dimen name="width_signup_button">121dp</dimen>
     <dimen name="width_spinner_gender">246dp</dimen>
+    <dimen name="width_small_buttton">200dp</dimen>
+    <dimen name="dimen_topic">30dp</dimen>
+    <dimen name="height_separator">0.5dp</dimen>
+    <dimen name="margin_16">16dp</dimen>
+    <dimen name="with_button_save_target">180dp</dimen>
+    <dimen name="margin_end_profile_oval_yellow">170dp</dimen>
 </resources>
-

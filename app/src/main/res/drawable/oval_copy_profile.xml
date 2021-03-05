@@ -2,9 +2,11 @@
     android:width="125dp"
     android:height="124dp"
     android:viewportWidth="125"
-    android:viewportHeight="124">
+    android:viewportHeight="124"
+    android:tintMode="multiply"
+    android:tint="@color/target_light_blue">
   <path
       android:pathData="M62.493,123.69C96.571,123.69 124.197,96.065 124.197,61.987C124.197,27.909 96.571,0.283 62.493,0.283C28.416,0.283 0.79,27.909 0.79,61.987C0.79,96.065 28.416,123.69 62.493,123.69Z"
-      android:fillColor="#2FBCF7"
-      android:fillType="evenOdd"/>
+      android:fillColor="#FFFFFFFF"
+      android:fillType="nonZero"/>
 </vector>

@@ -58,13 +58,23 @@ class MapFragment : PermissionFragment(), OnMapReadyCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observeTargets()
+        observeNewTargets()
         supportMapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         supportMapFragment.getMapAsync(this)
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
-        this.map = googleMap
+        map = googleMap
         checkLocationPermission()
+        map.setOnMarkerClickListener { marker ->
+            showTargetInfo(marker)
+            return@setOnMarkerClickListener true
+        }
+    }
+
+    private fun showTargetInfo(marker: Marker) {
+        val target: TargetModel? = targetMarkerMap[marker.id]
+        target?.run { targetActivityViewModel.showTargetInformation(target) }
     }
 
     private fun checkLocationPermission() {
@@ -144,6 +154,12 @@ class MapFragment : PermissionFragment(), OnMapReadyCallback {
             it.forEach { target ->
                 addTargetMarker(target)
             }
+        })
+    }
+
+    private fun observeNewTargets() {
+        targetActivityViewModel.newTarget.observe(viewLifecycleOwner, Observer {
+            addTargetMarker(it)
         })
     }
 

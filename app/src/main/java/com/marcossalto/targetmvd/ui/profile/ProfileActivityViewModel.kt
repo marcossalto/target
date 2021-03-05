@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.marcossalto.targetmvd.network.managers.IUserManager
+import com.marcossalto.targetmvd.network.managers.SessionManager
 import com.marcossalto.targetmvd.network.managers.UserManager
 import com.marcossalto.targetmvd.ui.base.BaseViewModel
 import com.marcossalto.targetmvd.util.NetworkState
@@ -21,6 +22,7 @@ open class ProfileActivityViewModel(listener: ViewModelListener?) : BaseViewMode
         viewModelScope.launch {
             val result = manager.signOut()
             if (result.isSuccess) {
+                SessionManager.signOut()
                 networkState = NetworkState.IDLE
                 state = ProfileState.SUCCESS
             } else {

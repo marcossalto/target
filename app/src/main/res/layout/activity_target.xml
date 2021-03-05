@@ -58,4 +58,6 @@
                 android:textStyle="bold" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <include layout="@layout/layout_save_target"/>
+    <include layout="@layout/layout_select_topic"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,6 +1,7 @@
 package com.marcossalto.targetmvd.util.extensions
 
 import com.google.gson.Gson
+import com.marcossalto.targetmvd.network.models.ErrorBadRequest
 import com.marcossalto.targetmvd.network.models.ErrorModel
 import com.marcossalto.targetmvd.network.models.UnprocessableEntity
 import kotlinx.coroutines.Dispatchers
@@ -34,10 +35,12 @@ class ActionCallback {
                                 errorMessage = apiError.errors[0]
                             }
                             400 -> {
-                                errorMessage = "Bad Request"
+                                // "Bad Request"
+                                val apiError = Gson().fromJson(it.charStream(), ErrorBadRequest::class.java)
+                                errorMessage = apiError.errors.user.joinToString()
                             }
                             422 -> {
-                                errorMessage = "Unprocessable Entity"
+                                // "Unprocessable Entity"
                                 val apiError = Gson().fromJson(it.charStream(), UnprocessableEntity::class.java)
                                 errorMessage = apiError.errors.full_messages.joinToString()
                             }
