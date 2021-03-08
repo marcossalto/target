@@ -2,10 +2,7 @@ package com.marcossalto.targetmvd.network.services
 
 import com.marcossalto.targetmvd.network.models.*
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.DELETE
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface ApiService {
     @GET("status")
@@ -31,4 +28,7 @@ interface ApiService {
 
     @POST("targets")
     fun createTarget(@Body target: TargetSerializer): Call<TargetSerializer>
+
+    @DELETE("targets/{id}")
+    fun deleteTarget(@Path("id") id: Long): Call<Void>
 }

@@ -46,6 +46,7 @@ class TargetView(
         getTopics()
         observeCreateTargetState()
         observeShowTarget()
+        observeDeleteTargetState()
     }
 
     private fun initSaveTargetBottomSheet() {
@@ -80,6 +81,12 @@ class TargetView(
             }
             save_target_button.setOnClickListener {
                 createTarget()
+            }
+            delete_target_button.setOnClickListener {
+                deleteTarget()
+            }
+            save_target_small_button.setOnClickListener {
+                expandCollapseCreateTargetSheet()
             }
         }
     }
@@ -139,6 +146,23 @@ class TargetView(
         }
     }
 
+    private fun deleteTarget() {
+        selectedTarget?.run {
+            viewModel.deleteTarget(this)
+            expandCollapseCreateTargetSheet()
+        }
+    }
+
+    private fun observeDeleteTargetState() {
+        viewModel.deleteTargetState.observe(lifecycleOwner, Observer { state ->
+            with(bindingRoot.context) {
+                if (state == ActionOnTargetState.FAILURE) {
+                    showError(getString(R.string.failed_deleting_target))
+                }
+            }
+        })
+    }
+
     private fun validateUserInputs(area: Double, title: String?, topic: TopicModel?): Boolean =
         validateArea(area) && validateTargetTitle(title) && validateTopic(topic)
 
@@ -186,10 +210,23 @@ class TargetView(
 
     fun expandCollapseCreateTargetSheet() {
         bottomSheetBehavior.state = if (bottomSheetBehavior.state != BottomSheetBehavior.STATE_EXPANDED) {
+            showBottomButtons(true)
             eraseTargetInformation()
             BottomSheetBehavior.STATE_EXPANDED
         } else {
             BottomSheetBehavior.STATE_COLLAPSED
+        }
+    }
+
+    private fun showBottomButtons(isCreateTarget: Boolean) {
+        with(bindingRoot) {
+            if (isCreateTarget) {
+                small_buttons_linear_layout.visibility = View.GONE
+                save_target_button.visibility = View.VISIBLE
+            } else {
+                small_buttons_linear_layout.visibility = View.VISIBLE
+                save_target_button.visibility = View.GONE
+            }
         }
     }
 
@@ -215,6 +252,7 @@ class TargetView(
     private fun completeTargetInformation(targetModel: TargetModel) {
         with(bindingRoot) {
             selectedTarget = targetModel
+            showBottomButtons(false)
             target_title_edit_text.text = Util.createEditable(targetModel.title)
             area_length_edit_text.text = Util.createEditable("" + targetModel.radius)
             targetModel.topic?.run {

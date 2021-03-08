@@ -59,6 +59,7 @@ class MapFragment : PermissionFragment(), OnMapReadyCallback {
         super.onViewCreated(view, savedInstanceState)
         observeTargets()
         observeNewTargets()
+        observeDeletedTargets()
         supportMapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         supportMapFragment.getMapAsync(this)
     }
@@ -160,6 +161,16 @@ class MapFragment : PermissionFragment(), OnMapReadyCallback {
     private fun observeNewTargets() {
         targetActivityViewModel.newTarget.observe(viewLifecycleOwner, Observer {
             addTargetMarker(it)
+        })
+    }
+
+    private fun observeDeletedTargets() {
+        targetActivityViewModel.deletedTarget.observe(viewLifecycleOwner, Observer { target ->
+            targetModelMap[target]?.run {
+                remove()
+                targetMarkerMap.remove(id)
+                targetModelMap.remove(target)
+            }
         })
     }
 
