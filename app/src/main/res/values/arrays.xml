@@ -4,5 +4,6 @@
         <item>SELECT YOUR GENDER</item>
         <item>Male</item>
         <item>Female</item>
+        <item>Other</item>
     </string-array>
 </resources>

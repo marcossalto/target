@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/save_target_layout_bottom_sheet"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:paddingHorizontal="@dimen/margin_30"
+    app:behavior_hideable="true"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+    <TextView
+        android:id="@+id/area_length_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:letterSpacing="0.1"
+        android:layout_marginTop="@dimen/margin_16"
+        android:text="@string/specify_area_length"
+        android:textAllCaps="true"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/area_length_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_10"
+        android:autofillHints=""
+        android:background="@drawable/edit_text_normal"
+        android:inputType="numberDecimal"
+        android:textAlignment="center"
+        android:letterSpacing="0.1"
+        android:hint="@string/area_length_hint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/area_length_text_view"
+        tools:ignore="LabelFor"/>
+
+    <TextView
+        android:id="@+id/area_length_message_text_view"
+        style="@style/Theme.TargetMVD.Error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/area_length_edit_text" />
+
+    <TextView
+        android:id="@+id/target_title_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:letterSpacing="0.1"
+        android:layout_marginTop="@dimen/margin_16"
+        android:text="@string/target_title"
+        android:textAllCaps="true"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/area_length_edit_text"/>
+
+    <EditText
+        android:id="@+id/target_title_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_10"
+        android:autofillHints=""
+        android:background="@drawable/edit_text_normal"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:letterSpacing="0.1"
+        android:hint="@string/choose_a_title_for_your_target"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/target_title_text_view"
+        tools:ignore="LabelFor" />
+
+    <TextView
+        android:id="@+id/target_title_message_text_view"
+        style="@style/Theme.TargetMVD.Error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/target_title_edit_text" />
+
+    <TextView
+        android:id="@+id/select_topic_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:letterSpacing="0.1"
+        android:layout_marginTop="@dimen/margin_16"
+        android:text="@string/select_a_topic"
+        android:textAllCaps="true"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/target_title_edit_text"/>
+
+    <EditText
+        android:id="@+id/topic_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_10"
+        android:autofillHints=""
+        android:background="@drawable/edit_text_normal"
+        android:inputType="numberDecimal"
+        android:textAlignment="center"
+        android:letterSpacing="0.1"
+        android:hint="@string/what_do_you_want_to_talk_about"
+        android:focusable="false"
+        android:clickable="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/select_topic_text_view"
+        tools:ignore="LabelFor"/>
+
+    <TextView
+        android:id="@+id/topic_message_text_view"
+        style="@style/Theme.TargetMVD.Error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topic_edit_text" />
+
+    <Button
+        android:id="@+id/save_target_button"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="@dimen/with_button_save_target"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_30"
+        android:layout_marginBottom="@dimen/margin_30"
+        android:width="@dimen/width_signup_button"
+        android:letterSpacing="0.2"
+        android:paddingStart="@dimen/margin_30"
+        android:paddingEnd="@dimen/margin_30"
+        android:text="@string/save_target"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topic_edit_text" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

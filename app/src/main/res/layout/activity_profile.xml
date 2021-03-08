@@ -14,6 +14,17 @@
         tools:context=".ui.profile.ProfileActivity">
 
         <ImageView
+            android:id="@+id/oval_yellow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_end_profile_oval_yellow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/profile_text_view"
+            app:srcCompat="@drawable/oval_profile"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
             android:id="@+id/oval_light_blue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -25,24 +36,13 @@
             tools:ignore="ContentDescription" />
 
         <ImageView
-            android:id="@+id/oval_yellow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="170dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/profile_text_view"
-            app:srcCompat="@drawable/oval_profile"
-            tools:ignore="ContentDescription" />
-
-        <ImageView
             android:id="@+id/user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="@+id/oval_light_blue"
             app:layout_constraintEnd_toEndOf="@+id/oval_light_blue"
             app:layout_constraintStart_toStartOf="@+id/oval_light_blue"
-            app:layout_constraintTop_toBottomOf="@+id/profile_text_view"
+            app:layout_constraintTop_toTopOf="@+id/oval_light_blue"
             app:srcCompat="@drawable/user_profile"
             tools:ignore="ContentDescription" />
 

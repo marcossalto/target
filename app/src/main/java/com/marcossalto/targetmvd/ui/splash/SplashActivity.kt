@@ -1,30 +1,31 @@
 package com.marcossalto.targetmvd.ui.splash
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.marcossalto.targetmvd.R
+import com.marcossalto.targetmvd.network.managers.SessionManager.isUserSignedIn
+import com.marcossalto.targetmvd.ui.base.BaseActivity
 import com.marcossalto.targetmvd.ui.signin.SignInActivity
+import com.marcossalto.targetmvd.ui.target.TargetActivity
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
-class SplashActivity : AppCompatActivity() {
+class SplashActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        goToSignIn()
+        GlobalScope.launch(Dispatchers.Main) {
+            initView()
+        }
     }
 
-    private fun goToSignIn() {
-        val splash = object : Thread(){
-            override fun run(){
-                try{
-                    sleep(2500)
-                    val intent = Intent(this@SplashActivity, SignInActivity::class.java)
-                    finish()
-                    startActivity(intent)
-                }catch (e: Exception){}
-            }
-        }
-        splash.start()
+    private suspend fun initView() {
+        delay(1000)
+        if (isUserSignedIn())
+            startActivityClearTask(TargetActivity())
+        else
+            startActivityClearTask(SignInActivity())
     }
 }

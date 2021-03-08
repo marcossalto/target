@@ -1,5 +1,7 @@
 package com.marcossalto.targetmvd.models
 
+import  com.marcossalto.targetmvd.network.models.Target
+
 data class TargetModel(
     val id: Long = 0,
     val title: String = "",
@@ -8,3 +10,14 @@ data class TargetModel(
     val radius: Double = 0.0,
     val topic: TopicModel? = null
 )
+
+fun TargetModel.toTargetRequest(): Target {
+    return Target(
+        id = id,
+        title = title,
+        lat = lat,
+        lng = lng,
+        radius = radius,
+        topicId = topic?.id ?: 0
+    )
+}

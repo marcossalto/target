@@ -11,4 +11,5 @@
     <color name="background">#F2F2F2</color>
     <color name="yellow">#EFC638</color>
     <color name="white_60">#99FFFFFF</color>
+    <color name="target_light_blue">#2FBCF7</color>
 </resources>

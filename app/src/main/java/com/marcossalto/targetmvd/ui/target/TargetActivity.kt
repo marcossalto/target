@@ -2,6 +2,7 @@ package com.marcossalto.targetmvd.ui.target
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.marcossalto.targetmvd.R
 import com.marcossalto.targetmvd.databinding.ActivityTargetBinding
@@ -9,6 +10,7 @@ import com.marcossalto.targetmvd.metrics.Analytics
 import com.marcossalto.targetmvd.metrics.PageEvents
 import com.marcossalto.targetmvd.metrics.VISIT_TARGET
 import com.marcossalto.targetmvd.ui.profile.ProfileActivity
+import com.marcossalto.targetmvd.util.NetworkState
 import com.marcossalto.targetmvd.util.permissions.PermissionActivity
 
 class TargetActivity : PermissionActivity() {
@@ -26,8 +28,19 @@ class TargetActivity : PermissionActivity() {
         val factory = TargetActivityViewModelFactory()
         viewModel = ViewModelProvider(this, factory)
             .get(TargetActivityViewModel::class.java)
-
+        observeNetworkState()
         initView()
+    }
+
+    private fun observeNetworkState() {
+        viewModel.networkStateObservable.observe(this, Observer { state ->
+            state?.run {
+                when (state) {
+                    NetworkState.LOADING -> showProgress()
+                    NetworkState.ERROR, NetworkState.IDLE -> hideProgress()
+                }
+            }
+        })
     }
 
     private fun initView() {
@@ -49,6 +62,13 @@ class TargetActivity : PermissionActivity() {
     }
 
     private fun initTargetView() {
-        targetView = TargetView(viewModel, this)
+        targetView = TargetView(viewModel, this, binding)
+        binding.targetLinearLayout.setOnClickListener {
+            targetView.expandCollapseCreateTargetSheet()
+        }
+    }
+
+    companion object {
+        const val PICK_HEIGHT_HIDDEN = 0
     }
 }
