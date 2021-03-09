@@ -141,6 +141,48 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topic_edit_text" />
+        app:layout_constraintTop_toBottomOf="@+id/topic_edit_text"
+        android:visibility="gone"/>
 
+    <LinearLayout
+        android:id="@+id/small_buttons_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_30"
+        android:layout_marginBottom="@dimen/margin_30"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topic_edit_text"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/delete_target_button"
+            android:layout_width="@dimen/no_dimen"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginEnd="@dimen/margin_10"
+            android:backgroundTint="@color/red"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:letterSpacing="0.2"
+            android:paddingStart="@dimen/margin_30"
+            android:paddingEnd="@dimen/margin_30"
+            android:text="@string/delete" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/save_target_small_button"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="@dimen/no_dimen"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="end"
+            android:backgroundTint="@color/black"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:letterSpacing="0.2"
+            android:paddingStart="@dimen/margin_30"
+            android:paddingEnd="@dimen/margin_30"
+            android:text="@string/save" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

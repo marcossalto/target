@@ -30,6 +30,8 @@ class TargetActivityViewModel(
     var targetState: MutableLiveData<ActionOnTargetState> = MutableLiveData()
     var newTarget: MutableLiveData<TargetModel> = MutableLiveData()
     private val showTarget: MutableLiveData<TargetModel> = MutableLiveData()
+    val deletedTarget: MutableLiveData<TargetModel> = MutableLiveData()
+    val deleteTargetState: MutableLiveData<ActionOnTargetState> = MutableLiveData()
 
     fun getLocation(context: Context, successAction: (location: Location) -> Unit) {
         locationManager.getLocation(context, successAction)
@@ -85,6 +87,23 @@ class TargetActivityViewModel(
         } catch (exception: IOException) {
             handleError(exception)
             exception.printStackTrace()
+        }
+    }
+
+    fun deleteTarget(target: TargetModel) {
+        try {
+            networkStateObservable.postValue(NetworkState.LOADING)
+            viewModelScope.launch {
+                val result = targetManager.deleteTarget(target.id)
+                if (result.isSuccess) {
+                    deletedTarget.postValue(target)
+                    deleteTargetState.postValue(ActionOnTargetState.SUCCESS)
+                    networkStateObservable.postValue(NetworkState.IDLE)
+                }
+            }
+        } catch (ex: IOException) {
+            deleteTargetState.postValue(ActionOnTargetState.FAILURE)
+            networkStateObservable.postValue(NetworkState.IDLE)
         }
     }
 

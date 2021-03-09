@@ -47,4 +47,5 @@
     <string name="save">Save</string>
     <string name="area_length_is_not_valid">Area lenght is not valid</string>
     <string name="target_title_is_not_valid">Target title is not valid</string>
+    <string name="failed_deleting_target">Failed deleting target</string>
 </resources>

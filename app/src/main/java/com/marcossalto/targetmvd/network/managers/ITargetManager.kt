@@ -10,4 +10,5 @@ interface ITargetManager {
     suspend fun getTopics(): Result<Data<TopicsSerializer>>
     suspend fun getTargets(): Result<Data<TargetsSerializer>>
     suspend fun createTarget(target: Target): Result<Data<TargetSerializer>>
+    suspend fun deleteTarget(id: Long): Result<Data<Void>>
 }
