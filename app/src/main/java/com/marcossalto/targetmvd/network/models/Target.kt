@@ -21,7 +21,7 @@ data class TargetSerializer(@Json(name = "target") val target: Target)
 @JsonClass(generateAdapter = true)
 data class TargetsSerializer(@Json(name = "targets") val targets: List<TargetSerializer>)
 
-fun Target.toTargetModel(topic: TopicModel?): TargetModel {
+fun Target.toTargetModel(topic: TopicModel): TargetModel {
     return TargetModel(
         title = title,
         lat = lat,
