@@ -1,22 +1,18 @@
 package com.marcossalto.targetmvd.ui.target
 
-import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import android.graphics.Point
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.*
 import com.marcossalto.targetmvd.R
 import com.marcossalto.targetmvd.databinding.FragmentMapBinding
@@ -38,6 +34,7 @@ class MapFragment : PermissionFragment(), OnMapReadyCallback {
     private lateinit var targetActivityViewModel: TargetActivityViewModel
     private var targetModelMap: HashMap<TargetModel, Marker> = HashMap()
     private var targetMarkerMap: HashMap<String, TargetModel> = HashMap()
+    private var selectedTarget: TargetModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,7 +72,30 @@ class MapFragment : PermissionFragment(), OnMapReadyCallback {
 
     private fun showTargetInfo(marker: Marker) {
         val target: TargetModel? = targetMarkerMap[marker.id]
-        target?.run { targetActivityViewModel.showTargetInformation(target) }
+        target?.run {
+            targetActivityViewModel.showTargetInformation(target)
+            selectTargetMarker(target)
+            centerMarker(marker)
+        }
+    }
+
+    private fun centerMarker(marker: Marker){
+        val projection: Projection = map.projection
+        val markerLatLng = LatLng(
+            marker.position.latitude,
+            marker.position.longitude
+        )
+        val markerScreenPosition: Point = projection.toScreenLocation(markerLatLng)
+        val pointHalfScreenAbove = Point(
+            markerScreenPosition.x,
+            markerScreenPosition.y + markerScreenPosition.y / 2
+        )
+
+        val aboveMarkerLatLng: LatLng = projection
+            .fromScreenLocation(pointHalfScreenAbove)
+
+        val center = CameraUpdateFactory.newLatLng(aboveMarkerLatLng)
+        map.moveCamera(center)
     }
 
     private fun checkLocationPermission() {
@@ -235,6 +255,31 @@ class MapFragment : PermissionFragment(), OnMapReadyCallback {
                 }
             } ?: return@withContext null
         }
+    }
+
+    private fun selectTargetMarker(target: TargetModel) {
+        lifecycleScope.launch {
+            selectedTarget?.let {
+                setIcon(it, false)
+            }
+            target.let {
+                selectedTarget = it
+                setIcon(it, true)
+            }
+        }
+    }
+
+    private suspend fun setIcon(target: TargetModel, selected: Boolean){
+        targetModelMap[target]?.setIcon(getMarkerDrawable(target,selected))
+    }
+
+    private suspend fun getMarkerDrawable(target: TargetModel, selected: Boolean) : BitmapDescriptor? {
+        return bitmapDescriptorWithOvalBackground(
+            ContextCompat.getDrawable(requireContext(),
+                if (selected) R.drawable.ic_oval_marker_bg_light_blue
+                else R.drawable.ic_oval_marker_bg),
+            ContextCompat.getDrawable(requireContext(), target.topic.getTargetIcon())
+        )
     }
 
     companion object {

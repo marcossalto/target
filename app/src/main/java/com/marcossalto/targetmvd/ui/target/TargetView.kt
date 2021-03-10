@@ -1,11 +1,14 @@
 package com.marcossalto.targetmvd.ui.target
 
+import android.app.AlertDialog
+import android.content.Context
 import android.graphics.drawable.Drawable
 import android.text.Editable
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.TextWatcher
 import android.text.style.ImageSpan
+import android.view.LayoutInflater
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
@@ -22,7 +25,10 @@ import com.marcossalto.targetmvd.util.DialogUtil
 import com.marcossalto.targetmvd.util.Util
 import com.marcossalto.targetmvd.util.extensions.getTargetIcon
 import com.marcossalto.targetmvd.util.extensions.value
+import kotlinx.android.synthetic.main.activity_target.view.*
+import kotlinx.android.synthetic.main.layout_delete_confirmation.view.*
 import kotlinx.android.synthetic.main.layout_save_target.view.*
+import kotlinx.android.synthetic.main.layout_save_target.view.small_buttons_linear_layout
 import kotlinx.android.synthetic.main.layout_select_topic.view.*
 
 class TargetView(
@@ -35,8 +41,8 @@ class TargetView(
         BottomSheetBehavior.from(bindingRoot.save_target_layout_bottom_sheet)
     private val topicsBottomSheetBehavior: BottomSheetBehavior<ConstraintLayout> =
         BottomSheetBehavior.from(bindingRoot.select_topic_layout_bottom_sheet)
-    private var selectedTopic: TopicModel? = null
-    private var selectedTarget: TargetModel? = null
+    private lateinit var selectedTopic: TopicModel
+    private lateinit var selectedTarget: TargetModel
     private lateinit var topicAdapter: TopicAdapter
 
     init {
@@ -83,11 +89,33 @@ class TargetView(
                 createTarget()
             }
             delete_target_button.setOnClickListener {
-                deleteTarget()
+                showConfirmDialog()
             }
             save_target_small_button.setOnClickListener {
                 expandCollapseCreateTargetSheet()
             }
+        }
+    }
+
+    private fun showConfirmDialog() {
+        val dialogView = LayoutInflater.from(bindingRoot.context)
+            .inflate(R.layout.layout_delete_confirmation, null)
+        val builder = AlertDialog.Builder(bindingRoot.context)
+            .setView(dialogView)
+
+        val alertDialog: AlertDialog = builder.create()
+
+        dialogView.target_title_confirm_text_view.text = selectedTarget.title
+        dialogView.target_confirm_image_view.setImageResource(selectedTarget.topic.getTargetIcon())
+
+        alertDialog.show()
+
+        dialogView.confirm_delete_button.setOnClickListener{
+            deleteTarget()
+            alertDialog.dismiss()
+        }
+        dialogView.confirm_cancel_button.setOnClickListener{
+            alertDialog.dismiss()
         }
     }
 
