@@ -62,7 +62,7 @@
         android:layout_marginTop="@dimen/no_dimen"
         android:layout_marginEnd="@dimen/no_dimen"
         android:padding="@dimen/padding_30"
-        android:text="Remember that if you delete it, you won’t be able to chat with it’s matches anymore"
+        android:text="@string/remember_that_if_you_delete"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

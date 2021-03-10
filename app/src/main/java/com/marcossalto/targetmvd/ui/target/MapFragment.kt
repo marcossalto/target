@@ -259,20 +259,24 @@ class MapFragment : PermissionFragment(), OnMapReadyCallback {
 
     private fun selectTargetMarker(target: TargetModel) {
         lifecycleScope.launch {
-            selectedTarget?.topic?.run{
-                targetModelMap[selectedTarget]?.setIcon(getMarkerDrawable(selectedTarget!!,false))
+            selectedTarget?.let {
+                setIcon(it, false)
             }
-            target.topic.run {
-                selectedTarget = target
-                targetModelMap[target]?.setIcon(getMarkerDrawable(target,true))
+            target.let {
+                selectedTarget = it
+                setIcon(it, true)
             }
         }
     }
 
-    private suspend fun getMarkerDrawable(target: TargetModel, b: Boolean) : BitmapDescriptor? {
+    private suspend fun setIcon(target: TargetModel, selected: Boolean){
+        targetModelMap[target]?.setIcon(getMarkerDrawable(target,selected))
+    }
+
+    private suspend fun getMarkerDrawable(target: TargetModel, selected: Boolean) : BitmapDescriptor? {
         return bitmapDescriptorWithOvalBackground(
             ContextCompat.getDrawable(requireContext(),
-                if (b) R.drawable.ic_oval_marker_bg_light_blue
+                if (selected) R.drawable.ic_oval_marker_bg_light_blue
                 else R.drawable.ic_oval_marker_bg),
             ContextCompat.getDrawable(requireContext(), target.topic.getTargetIcon())
         )
