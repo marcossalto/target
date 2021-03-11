@@ -1,5 +1,6 @@
 package com.marcossalto.targetmvd.network.models
 
+import com.marcossalto.targetmvd.models.ConversationModel
 import com.marcossalto.targetmvd.models.TargetModel
 import com.marcossalto.targetmvd.models.TopicModel
 import com.squareup.moshi.Json
@@ -16,7 +17,17 @@ data class Target(
 )
 
 @JsonClass(generateAdapter = true)
-data class TargetSerializer(@Json(name = "target") val target: Target)
+data class TargetSerializer(
+    @Json(name = "target") val target: Target,
+    @Json(name = "match_conversation") val matchConversation: Conversation? = null,
+    @Json(name = "matched_user") val matchedUser: MatchedUser? = null
+)
+
+@JsonClass(generateAdapter = true)
+data class Conversation(
+    @Json(name = "id") val id: Long = 0,
+    @Json(name = "topic_id") val topicId: Int = 0
+)
 
 @JsonClass(generateAdapter = true)
 data class TargetsSerializer(@Json(name = "targets") val targets: List<TargetSerializer>)
@@ -29,5 +40,12 @@ fun Target.toTargetModel(topic: TopicModel): TargetModel {
         radius = radius,
         topic = topic,
         id = id
+    )
+}
+
+fun Conversation.toConversationModel(): ConversationModel {
+    return ConversationModel(
+        id=id,
+        topicId=topicId
     )
 }

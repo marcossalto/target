@@ -24,4 +24,8 @@
     <dimen name="width_confirm_button">200dp</dimen>
     <dimen name="height_confirm_button">60dp</dimen>
     <dimen name="text_size_16">16sp</dimen>
+    <dimen name="margin_50">50dp</dimen>
+    <dimen name="text_size_26">26sp</dimen>
+    <dimen name="width_match_notification_button">250dp</dimen>
+    <dimen name="text_size_28">28sp</dimen>
 </resources>

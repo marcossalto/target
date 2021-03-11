@@ -3,17 +3,13 @@ package com.marcossalto.targetmvd.ui.target
 import android.content.Context
 import android.location.Location
 import androidx.lifecycle.*
-import com.marcossalto.targetmvd.models.TargetModel
-import com.marcossalto.targetmvd.models.TopicModel
-import com.marcossalto.targetmvd.models.toTargetRequest
-import com.marcossalto.targetmvd.network.models.Target
+import com.marcossalto.targetmvd.models.*
 import com.marcossalto.targetmvd.network.managers.ILocationManager
 import com.marcossalto.targetmvd.network.managers.ITargetManager
 import com.marcossalto.targetmvd.network.managers.LocationManager
 import com.marcossalto.targetmvd.network.managers.TargetManager
-import com.marcossalto.targetmvd.network.models.TopicSerializer
-import com.marcossalto.targetmvd.network.models.toTargetModel
-import com.marcossalto.targetmvd.network.models.toTopicModel
+import com.marcossalto.targetmvd.network.models.*
+import com.marcossalto.targetmvd.network.models.Target
 import com.marcossalto.targetmvd.ui.base.BaseViewModel
 import com.marcossalto.targetmvd.util.NetworkState
 import kotlinx.coroutines.launch
@@ -29,6 +25,8 @@ class TargetActivityViewModel(
     val targets: MutableLiveData<List<TargetModel>> = MutableLiveData()
     var targetState: MutableLiveData<ActionOnTargetState> = MutableLiveData()
     var newTarget: MutableLiveData<TargetModel> = MutableLiveData()
+    var newMatch: MutableLiveData<MatchedUserModel> = MutableLiveData()
+    var newConversation: MutableLiveData<ConversationModel> = MutableLiveData()
     private val showTarget: MutableLiveData<TargetModel> = MutableLiveData()
     val deletedTarget: MutableLiveData<TargetModel> = MutableLiveData()
     val deleteTargetState: MutableLiveData<ActionOnTargetState> = MutableLiveData()
@@ -79,7 +77,13 @@ class TargetActivityViewModel(
             viewModelScope.launch {
                 val result = targetManager.createTarget(targetModel.toTargetRequest())
                 if (result.isSuccess) {
-                    handleSuccess(result.getOrNull()?.value?.target?.toTargetModel(targetModel.topic))
+                    result.getOrNull()?.value?.let{
+                        handleSuccess(
+                            it.target.toTargetModel(targetModel.topic),
+                            it.matchedUser?.toMatchedUserModel(),
+                            it.matchConversation?.toConversationModel()
+                        )
+                    }
                 } else {
                     handleError(result.exceptionOrNull())
                 }
@@ -113,11 +117,21 @@ class TargetActivityViewModel(
         error = getErrorMessageFromException(exception)
     }
 
-    private fun handleSuccess(target: TargetModel?) {
-        targetState.postValue(ActionOnTargetState.SUCCESS)
+    private fun handleSuccess(
+        target: TargetModel?,
+        matchedUser: MatchedUserModel?,
+        matchConversation: ConversationModel?
+    ) {
+        targetState.postValue(ActionOnTargetState.SUCCESS )
         networkStateObservable.postValue(NetworkState.IDLE)
         target?.let {
             newTarget.postValue(it)
+        }
+        matchedUser?.let {
+            newMatch.postValue(it)
+        }
+        matchConversation?.let {
+            newConversation.postValue(it)
         }
     }
 
@@ -140,6 +154,10 @@ class TargetActivityViewModel(
     fun isTitleValid(title: String?): Boolean = title.isNullOrEmpty().not()
 
     fun isTopicValid(topic: TopicModel?): Boolean = topic != null
+
+    fun getNewMatch(): LiveData<MatchedUserModel> {
+        return newMatch
+    }
 }
 
 enum class ActionOnTargetState {

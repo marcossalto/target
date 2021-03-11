@@ -1,12 +1,10 @@
 package com.marcossalto.targetmvd.ui.target
 
 import android.app.AlertDialog
-import android.content.Context
 import android.graphics.drawable.Drawable
 import android.text.Editable
 import android.text.Spannable
 import android.text.SpannableString
-import android.text.TextWatcher
 import android.text.style.ImageSpan
 import android.view.LayoutInflater
 import android.view.View
@@ -15,18 +13,21 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.firebase.crashlytics.internal.common.CommonUtils.hideKeyboard
 import com.marcossalto.targetmvd.R
 import com.marcossalto.targetmvd.databinding.ActivityTargetBinding
+import com.marcossalto.targetmvd.models.MatchedUserModel
 import com.marcossalto.targetmvd.models.TargetModel
 import com.marcossalto.targetmvd.models.TopicModel
+import com.marcossalto.targetmvd.ui.target.ActionOnTargetState.*
 import com.marcossalto.targetmvd.util.DialogUtil
 import com.marcossalto.targetmvd.util.Util
 import com.marcossalto.targetmvd.util.extensions.getTargetIcon
 import com.marcossalto.targetmvd.util.extensions.value
-import kotlinx.android.synthetic.main.activity_target.view.*
 import kotlinx.android.synthetic.main.layout_delete_confirmation.view.*
+import kotlinx.android.synthetic.main.layout_match_notification.view.*
 import kotlinx.android.synthetic.main.layout_save_target.view.*
 import kotlinx.android.synthetic.main.layout_save_target.view.small_buttons_linear_layout
 import kotlinx.android.synthetic.main.layout_select_topic.view.*
@@ -53,6 +54,7 @@ class TargetView(
         observeCreateTargetState()
         observeShowTarget()
         observeDeleteTargetState()
+        observeMatchConversation()
     }
 
     private fun initSaveTargetBottomSheet() {
@@ -119,6 +121,36 @@ class TargetView(
         }
     }
 
+    private fun showMatchDialog(matchedUserModel: MatchedUserModel) {
+        val dialogView = LayoutInflater.from(bindingRoot.context)
+            .inflate(R.layout.layout_match_notification, null)
+        val builder = AlertDialog.Builder(bindingRoot.context)
+            .setView(dialogView)
+
+        val alertDialog: AlertDialog = builder.create()
+
+        Glide.with(bindingRoot.context)
+            .load(R.mipmap.avatar)
+            .circleCrop()
+            .into(dialogView.avatar)
+
+        matchedUserModel.fullName.also { dialogView.match_name_text_view.text = it }
+
+        alertDialog.show()
+
+        dialogView.cool_start_chatting_button.setOnClickListener{
+            alertDialog.dismiss()
+            successCreatingTarget()
+            startChat()
+        }
+        dialogView.skip_button.setOnClickListener{
+            alertDialog.dismiss()
+            successCreatingTarget()
+        }
+    }
+
+    private fun startChat() { }
+
     private fun getTopics() {
         viewModel.getTopics().observe(lifecycleOwner, { initTopicList(it) })
     }
@@ -137,6 +169,10 @@ class TargetView(
         viewModel.hasToShowTargetInformation().observe(lifecycleOwner, Observer {
             showTargetInformation(it)
         })
+    }
+
+    private fun observeMatchConversation(){
+        viewModel.getNewMatch().observe(lifecycleOwner, { showMatchDialog(it) })
     }
 
     private fun selectedTopic(topic: TopicModel) {
@@ -184,7 +220,7 @@ class TargetView(
     private fun observeDeleteTargetState() {
         viewModel.deleteTargetState.observe(lifecycleOwner, Observer { state ->
             with(bindingRoot.context) {
-                if (state == ActionOnTargetState.FAILURE) {
+                if (state == FAILURE) {
                     showError(getString(R.string.failed_deleting_target))
                 }
             }
@@ -304,13 +340,13 @@ class TargetView(
         viewModel.targetState.observe(lifecycleOwner, Observer { targetState ->
             targetState?.run {
                 when (this) {
-                    ActionOnTargetState.FAILURE -> showError(
+                    FAILURE -> showError(
                         viewModel.error ?: bindingRoot.context.getString(R.string.default_error)
                     )
-                    ActionOnTargetState.SUCCESS -> {
+                    SUCCESS -> {
                         successCreatingTarget()
                     }
-                    ActionOnTargetState.NONE -> Unit
+                    NONE -> Unit
                 }
             }
         })

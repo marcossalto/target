@@ -182,6 +182,12 @@ class MapFragment : PermissionFragment(), OnMapReadyCallback {
         targetActivityViewModel.newTarget.observe(viewLifecycleOwner, Observer {
             addTargetMarker(it)
         })
+        targetActivityViewModel.newMatch.observe(viewLifecycleOwner, Observer {
+
+        })
+        targetActivityViewModel.newConversation.observe(viewLifecycleOwner, Observer {
+
+        })
     }
 
     private fun observeDeletedTargets() {
