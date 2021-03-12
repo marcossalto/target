@@ -138,12 +138,12 @@ class TargetView(
 
         alertDialog.show()
 
-        dialogView.cool_start_chatting_button.setOnClickListener{
+        dialogView.cool_start_chatting_button.setOnClickListener {
             alertDialog.dismiss()
             successCreatingTarget()
             startChat()
         }
-        dialogView.skip_button.setOnClickListener{
+        dialogView.skip_button.setOnClickListener {
             alertDialog.dismiss()
             successCreatingTarget()
         }
@@ -171,7 +171,7 @@ class TargetView(
         })
     }
 
-    private fun observeMatchConversation(){
+    private fun observeMatchConversation() {
         viewModel.getNewMatch().observe(lifecycleOwner, { showMatchDialog(it) })
     }
 

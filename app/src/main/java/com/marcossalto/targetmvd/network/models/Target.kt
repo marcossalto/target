@@ -45,7 +45,7 @@ fun Target.toTargetModel(topic: TopicModel): TargetModel {
 
 fun Conversation.toConversationModel(): ConversationModel {
     return ConversationModel(
-        id=id,
-        topicId=topicId
+        id = id,
+        topicId = topicId
     )
 }

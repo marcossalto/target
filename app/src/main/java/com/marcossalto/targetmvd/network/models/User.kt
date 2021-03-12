@@ -87,13 +87,13 @@ data class MatchedUser (
 
 fun MatchedUser.toMatchedUserModel(): MatchedUserModel {
     return MatchedUserModel(
-        id=id,
-        email=email,
-        firstName=firstName,
-        lastName=lastName,
-        fullName=fullName,
-        username=username,
-        gender=gender,
-        avatar=avatar
+        id = id,
+        email = email,
+        firstName = firstName,
+        lastName = lastName,
+        fullName = fullName,
+        username = username,
+        gender = gender,
+        avatar = avatar
     )
 }
