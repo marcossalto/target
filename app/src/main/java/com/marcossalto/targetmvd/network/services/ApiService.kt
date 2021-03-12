@@ -31,4 +31,7 @@ interface ApiService {
 
     @DELETE("targets/{id}")
     fun deleteTarget(@Path("id") id: Long): Call<Void>
+
+    @GET("match_conversations")
+    fun getConversations(): Call<ConversationsSerializer>
 }
