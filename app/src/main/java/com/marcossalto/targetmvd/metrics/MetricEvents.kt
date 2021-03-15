@@ -8,4 +8,5 @@ const val VISIT_SIGN_IN = "visit_sign_in"
 const val VISIT_PROFILE = "visit_profile"
 const val VISIT_SIGN_UP = "visit_sign_up"
 const val VISIT_TARGET = "visit_target"
+const val VISIT_CHAT_LIST = "visit_chat_list"
 

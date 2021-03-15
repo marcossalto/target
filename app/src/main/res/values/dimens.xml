@@ -28,4 +28,9 @@
     <dimen name="text_size_26">26sp</dimen>
     <dimen name="width_match_notification_button">250dp</dimen>
     <dimen name="text_size_28">28sp</dimen>
+    <dimen name="margin_64">64dp</dimen>
+    <dimen name="padding_5">5dp</dimen>
+    <dimen name="wh_avatar_50">50dp</dimen>
+    <dimen name="wh_topic_image_view">20dp</dimen>
+    <dimen name="padding_4">4dp</dimen>
 </resources>

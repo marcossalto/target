@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingEnd="@dimen/padding_5">
+
+    <ImageView
+        android:id="@+id/avatar"
+        android:layout_width="@dimen/wh_avatar_50"
+        android:layout_height="@dimen/wh_avatar_50"
+        android:scaleType="fitXY"
+        android:layout_marginStart="@dimen/margin_20"
+        android:layout_marginTop="@dimen/margin_20"
+        android:layout_marginBottom="@dimen/margin_10"
+        app:layout_constraintDimensionRatio="W,1:1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription"
+        app:srcCompat="@mipmap/avatar" />
+
+    <TextView
+        android:id="@+id/user_name_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_10"
+        android:maxLines="3"
+        tools:text="José Gazzano"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toEndOf="@+id/avatar"
+        app:layout_constraintTop_toTopOf="@id/avatar" />
+
+    <TextView
+        android:id="@+id/last_message_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_10"
+        tools:text="Hello! Where would you like to travel?"
+        app:layout_constraintStart_toEndOf="@+id/avatar"
+        app:layout_constraintTop_toBottomOf="@+id/user_name_text_view" />
+
+    <ImageView
+        android:id="@+id/topic_image_view"
+        android:layout_width="@dimen/wh_topic_image_view"
+        android:layout_height="@dimen/wh_topic_image_view"
+        android:layout_marginEnd="@dimen/margin_20"
+        app:layout_constraintBottom_toBottomOf="@id/avatar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/avatar"
+        tools:srcCompat="@drawable/ic_travel" />
+
+    <ImageView
+        android:id="@+id/unread_message_image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_10"
+        android:layout_marginTop="@dimen/margin_10"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_oval_yellow" />
+
+    <TextView
+        android:id="@+id/unread_message_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/padding_4"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/unread_message_image_view"
+        app:layout_constraintEnd_toEndOf="@id/unread_message_image_view"
+        app:layout_constraintStart_toStartOf="@id/unread_message_image_view"
+        app:layout_constraintTop_toTopOf="@id/unread_message_image_view"
+        tools:text="2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

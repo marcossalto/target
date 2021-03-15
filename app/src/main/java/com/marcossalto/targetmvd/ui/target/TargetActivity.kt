@@ -1,6 +1,5 @@
 package com.marcossalto.targetmvd.ui.target
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -9,6 +8,7 @@ import com.marcossalto.targetmvd.databinding.ActivityTargetBinding
 import com.marcossalto.targetmvd.metrics.Analytics
 import com.marcossalto.targetmvd.metrics.PageEvents
 import com.marcossalto.targetmvd.metrics.VISIT_TARGET
+import com.marcossalto.targetmvd.ui.chatlist.ChatListActivity
 import com.marcossalto.targetmvd.ui.profile.ProfileActivity
 import com.marcossalto.targetmvd.util.NetworkState
 import com.marcossalto.targetmvd.util.permissions.PermissionActivity
@@ -45,13 +45,13 @@ class TargetActivity : PermissionActivity() {
 
     private fun initView() {
         initMap()
-        binding.toolbar.profileImageView.setOnClickListener {
-            startActivity(
-                Intent(
-                    this,
-                    ProfileActivity::class.java
-                )
-            )
+        with(binding.toolbar) {
+            profileImageView.setOnClickListener {
+                startActivityClearTask(ProfileActivity())
+            }
+            chatImageView.setOnClickListener {
+                startActivityClearTask(ChatListActivity())
+            }
         }
         initTargetView()
     }

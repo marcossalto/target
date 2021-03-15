@@ -1,9 +1,7 @@
 package com.marcossalto.targetmvd.network.managers
 
+import com.marcossalto.targetmvd.network.models.*
 import com.marcossalto.targetmvd.network.models.Target
-import com.marcossalto.targetmvd.network.models.TargetSerializer
-import com.marcossalto.targetmvd.network.models.TargetsSerializer
-import com.marcossalto.targetmvd.network.models.TopicsSerializer
 import com.marcossalto.targetmvd.util.extensions.Data
 
 interface ITargetManager {
